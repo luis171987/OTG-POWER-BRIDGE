@@ -18,7 +18,7 @@ home = section('private fun HomePage(', 'private fun CyberMiniMonitor(')
 storage = section('private fun StoragePage(', 'private fun ToolsPage(')
 checks = {
     'version_code_10': 'versionCode = 10' in gradle,
-    'version_name_v063': '0.6.3-cyber-cockpit-precision-candidate' in gradle,
+    'version_name_v063': ('versionName = "0.6.3"' in gradle or 'versionName = "0.6.3-cyber-cockpit-precision-candidate"' in gradle),
     'paquete_preview_independiente': 'applicationIdSuffix = ".previewv063"' in gradle,
     'cinco_pantallas': all('Page.' + x in ui for x in ('HOME', 'TRANSFER', 'STORAGE', 'TOOLS', 'SETTINGS')),
     'navegacion_animada': 'AnimatedContent(' in ui and 'slideInHorizontally' in ui,
