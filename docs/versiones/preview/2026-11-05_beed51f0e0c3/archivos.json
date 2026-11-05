@@ -1,0 +1,359 @@
+{
+  "schema_version": 1,
+  "project": "luis171987/OTG-POWER-BRIDGE",
+  "version": "0.5.0-real-candidate",
+  "kind": "preview-debug-ci-incomplete",
+  "source_sha": "beed51f0e0c329aa973259cd4ed5b19c0ebc818c",
+  "tag": null,
+  "release": null,
+  "observed_date_utc": "2026-11-05",
+  "git_tree": {
+    "sha": "a4e72ccdf2973bfb1aa16d19c0c7a41069e287ee",
+    "truncated": false,
+    "complete": true,
+    "blob_count": 43,
+    "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/tree/beed51f0e0c329aa973259cd4ed5b19c0ebc818c",
+    "source_zip": "https://github.com/luis171987/OTG-POWER-BRIDGE/archive/beed51f0e0c329aa973259cd4ed5b19c0ebc818c.zip"
+  },
+  "validation": {
+    "run_id": 41991766174,
+    "attempt": 1,
+    "job_id": 127125411443,
+    "conclusion": "success",
+    "scope": [
+      "static-code-presence-10/10",
+      "static-telemetry-presence-12/12",
+      "assembleDebug",
+      "nonempty-apk",
+      "APK ZIP integrity"
+    ],
+    "not_run": [
+      "TelemetryFormatsTest.kt8checks",
+      "UI runtime tests",
+      "physical acceptance"
+    ],
+    "captures": {
+      "status": "pending",
+      "captured_images": [],
+      "existing_images": "conceptual illustrations/mockups; no runtime proof"
+    }
+  },
+  "artifacts": [
+    {
+      "id": 13398068748,
+      "name": "OTG-POWER-BRIDGE-debug-candidato",
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/actions/runs/41991766174/artifacts/13398068748",
+      "size_in_bytes": 8668981,
+      "expired_at_observation": false,
+      "expires_at": "2027-02-03T08:04:56Z",
+      "kind": "temporary GitHub Actions artifact ZIP containing debug APK",
+      "digest_from_github": "sha256:573cc386c99c60fd38810e610d86c4b4ab91f490b123718b4f990dc0a1882d61",
+      "digest_scope": "artifact ZIP, not APK; no independent download by monitor",
+      "APK_SHA256_from_CI_log": "db6c7bb170ac281115d3027c8d04773061f6ee74b88fac74e7584f23684af513",
+      "APK_hash_provenance": "https://github.com/luis171987/OTG-POWER-BRIDGE/actions/runs/41991766174/job/127125411443"
+    }
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/android-debug.yml",
+      "type": "git_blob",
+      "git_blob_sha": "b43c0deaba4db86279b5b3f5557afd70f6ecf111",
+      "size_in_bytes": 1566,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/.github/workflows/android-debug.yml"
+    },
+    {
+      "path": ".gitignore",
+      "type": "git_blob",
+      "git_blob_sha": "405fc4ac25bbcc4e0a0a33813de534ff6e34990b",
+      "size_in_bytes": 190,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/.gitignore"
+    },
+    {
+      "path": "README.md",
+      "type": "git_blob",
+      "git_blob_sha": "0bc333996e796c576508884e61ebe83361e9f157",
+      "size_in_bytes": 16846,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/README.md"
+    },
+    {
+      "path": "README_BUILD_ES.md",
+      "type": "git_blob",
+      "git_blob_sha": "2ee8098e72769db47a772153dc5308e3d76f5546",
+      "size_in_bytes": 1307,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/README_BUILD_ES.md"
+    },
+    {
+      "path": "README_PUBLICAR_ES.md",
+      "type": "git_blob",
+      "git_blob_sha": "bb2cef0c01085415b763337380641fbfdbd8ca6e",
+      "size_in_bytes": 1928,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/README_PUBLICAR_ES.md"
+    },
+    {
+      "path": "SHA256SUMS.txt",
+      "type": "git_blob",
+      "git_blob_sha": "e5331adc82f54371dec933c29d9b58d1ec1477cb",
+      "size_in_bytes": 4362,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/SHA256SUMS.txt"
+    },
+    {
+      "path": "app/build.gradle.kts",
+      "type": "git_blob",
+      "git_blob_sha": "10b47de9cca2d8c745c7fbb8178f1d0e70358395",
+      "size_in_bytes": 1114,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/build.gradle.kts"
+    },
+    {
+      "path": "app/src/main/AndroidManifest.xml",
+      "type": "git_blob",
+      "git_blob_sha": "09aa64927c90e4a75e5a261902732957bd980226",
+      "size_in_bytes": 839,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/src/main/AndroidManifest.xml"
+    },
+    {
+      "path": "app/src/main/java/bo/genai/usbpowerbridge/MainActivity.kt",
+      "type": "git_blob",
+      "git_blob_sha": "328f7fad920a3f23808b531b15b85c591d2fc06c",
+      "size_in_bytes": 34110,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/src/main/java/bo/genai/usbpowerbridge/MainActivity.kt"
+    },
+    {
+      "path": "app/src/main/java/bo/genai/usbpowerbridge/RealStorage.kt",
+      "type": "git_blob",
+      "git_blob_sha": "ceb9f160385d462bb9187a0a5d0df14e71e954cb",
+      "size_in_bytes": 2663,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/src/main/java/bo/genai/usbpowerbridge/RealStorage.kt"
+    },
+    {
+      "path": "app/src/main/java/bo/genai/usbpowerbridge/SafeDocumentOps.kt",
+      "type": "git_blob",
+      "git_blob_sha": "26687978d8498f3fa5b3e780ec35125c35d8260b",
+      "size_in_bytes": 7956,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/src/main/java/bo/genai/usbpowerbridge/SafeDocumentOps.kt"
+    },
+    {
+      "path": "app/src/main/java/bo/genai/usbpowerbridge/TelemetryFormats.kt",
+      "type": "git_blob",
+      "git_blob_sha": "6dc0a4599741e7d9b026dc7a7203a608f3f6a12d",
+      "size_in_bytes": 875,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/src/main/java/bo/genai/usbpowerbridge/TelemetryFormats.kt"
+    },
+    {
+      "path": "app/src/main/java/bo/genai/usbpowerbridge/UsbProbe.kt",
+      "type": "git_blob",
+      "git_blob_sha": "59f218ad3850e81bd2a8c70e8a4ce51e03f15a81",
+      "size_in_bytes": 2129,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/src/main/java/bo/genai/usbpowerbridge/UsbProbe.kt"
+    },
+    {
+      "path": "app/src/main/res/drawable-nodpi/brand_logo.webp",
+      "type": "git_blob",
+      "git_blob_sha": "4eac915a161706c15ce789098a2fa8731dadd73c",
+      "size_in_bytes": 123696,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/src/main/res/drawable-nodpi/brand_logo.webp"
+    },
+    {
+      "path": "app/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "type": "git_blob",
+      "git_blob_sha": "09fef9efecd2621f369d3067e9d7c894554ecf70",
+      "size_in_bytes": 13611,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+      "path": "app/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "type": "git_blob",
+      "git_blob_sha": "b611384ccdd221dda6e9f55790589fcefa1c250c",
+      "size_in_bytes": 6740,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+      "path": "app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "type": "git_blob",
+      "git_blob_sha": "97d920f34e5102b2b74ce0b71eb685646c906f0e",
+      "size_in_bytes": 22332,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+      "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "type": "git_blob",
+      "git_blob_sha": "a905d13befffa025e57e6b3cd8dec273da7c95ed",
+      "size_in_bytes": 44919,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+      "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "type": "git_blob",
+      "git_blob_sha": "fae1858c1e10c946cace4a4d43cdcbbaf4bfb6a0",
+      "size_in_bytes": 73465,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+      "path": "assets/01_conexion_general_3d.png",
+      "type": "git_blob",
+      "git_blob_sha": "78359c69e91fad4eba1131736a2d50b9ed8a2ef4",
+      "size_in_bytes": 2392116,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/assets/01_conexion_general_3d.png"
+    },
+    {
+      "path": "assets/02_tutorial_conexion_3d.png",
+      "type": "git_blob",
+      "git_blob_sha": "569f10481ef14e4dd5c10f6992a1d1af02ede301",
+      "size_in_bytes": 2324345,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/assets/02_tutorial_conexion_3d.png"
+    },
+    {
+      "path": "assets/03_tutorial_aplicacion_3d.png",
+      "type": "git_blob",
+      "git_blob_sha": "a66946bdbb0ec6c96e40380dc7584e2f3d2becf4",
+      "size_in_bytes": 2333370,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/assets/03_tutorial_aplicacion_3d.png"
+    },
+    {
+      "path": "assets/04_panel_android_3d.png",
+      "type": "git_blob",
+      "git_blob_sha": "823af876d7c9f4387d66ec1bdf54ba235c455e31",
+      "size_in_bytes": 2316315,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/assets/04_panel_android_3d.png"
+    },
+    {
+      "path": "assets/05_diseno_desconectado_aprobado.png",
+      "type": "git_blob",
+      "git_blob_sha": "6b30d5fdd2a58f48b079c6689d16125d1cfc755c",
+      "size_in_bytes": 1858258,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/assets/05_diseno_desconectado_aprobado.png"
+    },
+    {
+      "path": "assets/06_diseno_conectado_aprobado.png",
+      "type": "git_blob",
+      "git_blob_sha": "04e43e7060ad05b658b62300584f8a10892f040a",
+      "size_in_bytes": 1937714,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/assets/06_diseno_conectado_aprobado.png"
+    },
+    {
+      "path": "assets/LOGOTIPO_OTG_POWER_BRIDGE_OFICIAL.jpg",
+      "type": "git_blob",
+      "git_blob_sha": "b5b3a963c802ebabf78f2bce5d7d53400e3c7861",
+      "size_in_bytes": 1578572,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/assets/LOGOTIPO_OTG_POWER_BRIDGE_OFICIAL.jpg"
+    },
+    {
+      "path": "assets/SOCIAL_PREVIEW_OTG_POWER_BRIDGE_1280x640.jpg",
+      "type": "git_blob",
+      "git_blob_sha": "c45971cbaf0121de36a7e3052daf9f309d9572e8",
+      "size_in_bytes": 162186,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/assets/SOCIAL_PREVIEW_OTG_POWER_BRIDGE_1280x640.jpg"
+    },
+    {
+      "path": "build.gradle.kts",
+      "type": "git_blob",
+      "git_blob_sha": "1b4481acf060315324230e9286ded1ced3deaaf4",
+      "size_in_bytes": 217,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/build.gradle.kts"
+    },
+    {
+      "path": "docs/COMPARTIR_WHATSAPP_FACEBOOK.md",
+      "type": "git_blob",
+      "git_blob_sha": "914b19efc02122bdbbd512632713e93a2c272e48",
+      "size_in_bytes": 2421,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/docs/COMPARTIR_WHATSAPP_FACEBOOK.md"
+    },
+    {
+      "path": "docs/ESTADO_Y_LIMITES.md",
+      "type": "git_blob",
+      "git_blob_sha": "d7d12c07dd395b0f2088c11c597e592e42151275",
+      "size_in_bytes": 964,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/docs/ESTADO_Y_LIMITES.md"
+    },
+    {
+      "path": "docs/MODO_REAL_ANDROID.md",
+      "type": "git_blob",
+      "git_blob_sha": "4a8b05508af70074dd2bd40dac2e0591e138b1ec",
+      "size_in_bytes": 3448,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/docs/MODO_REAL_ANDROID.md"
+    },
+    {
+      "path": "docs/PROCEDIMIENTO_DE_PRUEBA_SEGURA.md",
+      "type": "git_blob",
+      "git_blob_sha": "efe016e484389827dc26986218ee31265ba2fa3c",
+      "size_in_bytes": 1165,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/docs/PROCEDIMIENTO_DE_PRUEBA_SEGURA.md"
+    },
+    {
+      "path": "docs/TELEMETRIA_REAL_V0_5_0.md",
+      "type": "git_blob",
+      "git_blob_sha": "22dcbd7c924821fbb9db7e88611fb8bdd0b7f8f0",
+      "size_in_bytes": 1611,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/docs/TELEMETRIA_REAL_V0_5_0.md"
+    },
+    {
+      "path": "gradle.properties",
+      "type": "git_blob",
+      "git_blob_sha": "e6961679fc95d6da9ab1dc56ee2e9d98ecbe6e63",
+      "size_in_bytes": 103,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/gradle.properties"
+    },
+    {
+      "path": "scripts/PUBLICAR_GITHUB_TERMUX.sh",
+      "type": "git_blob",
+      "git_blob_sha": "5fff449e41b8aa0fad232dfca12f4e5afb5dd2a6",
+      "size_in_bytes": 4864,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/scripts/PUBLICAR_GITHUB_TERMUX.sh"
+    },
+    {
+      "path": "scripts/PUBLICAR_MODO_REAL_TERMUX.sh",
+      "type": "git_blob",
+      "git_blob_sha": "282848dae97859c6214884fc88138b9482a9f1fa",
+      "size_in_bytes": 6223,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/scripts/PUBLICAR_MODO_REAL_TERMUX.sh"
+    },
+    {
+      "path": "scripts/PUBLICAR_TELEMETRIA_V05_TERMUX.sh",
+      "type": "git_blob",
+      "git_blob_sha": "8472ad0a57a2b63aecfd56fca9ca800a25f4fd35",
+      "size_in_bytes": 6128,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/scripts/PUBLICAR_TELEMETRIA_V05_TERMUX.sh"
+    },
+    {
+      "path": "scripts/build_termux.sh",
+      "type": "git_blob",
+      "git_blob_sha": "b8c7f16510bea90019b5e9958a5fa367865889e3",
+      "size_in_bytes": 935,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/scripts/build_termux.sh"
+    },
+    {
+      "path": "scripts/patch_readme.py",
+      "type": "git_blob",
+      "git_blob_sha": "a5087b5a79f6347dc1ab1776f9d4397eddf59d83",
+      "size_in_bytes": 2110,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/scripts/patch_readme.py"
+    },
+    {
+      "path": "scripts/validar_modo_real.py",
+      "type": "git_blob",
+      "git_blob_sha": "00f68aeba764af16d003dd8bda753a2dd0769482",
+      "size_in_bytes": 1283,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/scripts/validar_modo_real.py"
+    },
+    {
+      "path": "scripts/validar_telemetria_v05.py",
+      "type": "git_blob",
+      "git_blob_sha": "281841aa9d324f85d76919f934b8b8e6a50e27f3",
+      "size_in_bytes": 1570,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/scripts/validar_telemetria_v05.py"
+    },
+    {
+      "path": "settings.gradle.kts",
+      "type": "git_blob",
+      "git_blob_sha": "eaf96781f78a47488279d2324f0c94f53a826368",
+      "size_in_bytes": 340,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/settings.gradle.kts"
+    },
+    {
+      "path": "tests/TelemetryFormatsTest.kt",
+      "type": "git_blob",
+      "git_blob_sha": "142e8cedc912adcec09a73897e2052a01a553f3a",
+      "size_in_bytes": 528,
+      "url": "https://github.com/luis171987/OTG-POWER-BRIDGE/blob/beed51f0e0c329aa973259cd4ed5b19c0ebc818c/tests/TelemetryFormatsTest.kt"
+    }
+  ]
+}

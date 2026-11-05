@@ -13,6 +13,20 @@
 
 </div>
 
+<!-- repo-monitor:start -->
+## Estado comprobado de la preview 0.5.0
+
+Fuente: [`beed51f0e0c329aa973259cd4ed5b19c0ebc818c`](https://github.com/luis171987/OTG-POWER-BRIDGE/commit/beed51f0e0c329aa973259cd4ed5b19c0ebc818c), **candidata de desarrollo**, sin tag ni Release publicados.
+
+- **Compilación aprobada:** [Android CI, ejecución 41991766174, intento 1](https://github.com/luis171987/OTG-POWER-BRIDGE/actions/runs/41991766174) completó `gradle --no-daemon --console=plain :app:assembleDebug`; comprobó que el APK no estaba vacío y su integridad ZIP.
+- **Comprobaciones estáticas aprobadas:** 10/10 de modo real y 12/12 de telemetría. Comprueban presencia de código; no acreditan el comportamiento de la app en ejecución.
+- **Artefacto disponible:** [APK debug candidato de Actions](https://github.com/luis171987/OTG-POWER-BRIDGE/actions/runs/41991766174/artifacts/13398068748), sujeto al acceso y caducidad de Actions. No es instalador estable ni Release firmada de distribución.
+- **Validación incompleta:** las ocho comprobaciones de `tests/TelemetryFormatsTest.kt` no se ejecutan en este workflow. No hay prueba de interfaz ni de hardware que acredite transferencia, permisos SAF o carga + OTG simultáneos.
+- **Galería real pendiente:** las imágenes existentes conservan su condición de ilustraciones y mockups; no son capturas de esta preview. No se abrió esta versión en un dispositivo durante esta revisión.
+
+Consulta el [índice de versiones y previews](docs/versiones/README.md), la [ficha de esta preview](docs/versiones/preview/2026-11-05_beed51f0e0c3/README.md) y su [manifiesto de archivos](docs/versiones/preview/2026-11-05_beed51f0e0c3/archivos.json). La compilación no satisface la [puerta de validación física](docs/MODO_REAL_ANDROID.md#compatibilidad-y-límites-físicos).
+<!-- repo-monitor:end -->
+
 <!-- OTG:APK:START -->
 ## 📲 Descargar e instalar OTG POWER BRIDGE en Android
 
@@ -69,7 +83,7 @@ El panel distingue **batería del teléfono** (porcentaje real comunicado por An
 
 El botón **Conectar** permite seleccionar una carpeta mediante Android. El botón **Desconectar** termina la sesión de acceso de la app, no desconecta físicamente el hub. Para transferir, autoriza escritura y utiliza una copia de prueba. Los archivos originales se conservan durante la copia; el éxito se informa solo tras comparar SHA-256.
 
-**Versión:** código candidato `0.5.0` pendiente de recompilación CI y prueba en teléfonos reales; no es todavía una versión pública final. Consultar [documentación técnica de telemetría](docs/TELEMETRIA_REAL_V0_5_0.md).
+**Versión:** código candidato `0.5.0` con compilación debug CI aprobada para el SHA indicado arriba y pruebas en teléfonos reales pendientes; no es todavía una versión pública final. Consultar [documentación técnica de telemetría](docs/TELEMETRIA_REAL_V0_5_0.md).
 
 ## 📢 Comparte el repositorio en WhatsApp y Facebook
 
