@@ -13,6 +13,36 @@
 
 </div>
 
+<!-- OTG:APK:START -->
+## 📲 Descargar e instalar OTG POWER BRIDGE en Android
+
+**Aplicación creada por GENAI INDUSTRIES** · Compatible a nivel de diseño con teléfonos Android de múltiples marcas (Samsung, HONOR, Redmi/Xiaomi, Motorola y otras), sujeto a las capacidades reales del hardware.
+
+### ⏳ APK en preparación
+
+**El instalador todavía no figura como activo de una versión estable en GitHub Releases.** No se ofrece un enlace de descarga que lleve a un archivo inexistente.
+
+**[📦 Consultar descargas y versiones disponibles](https://github.com/luis171987/OTG-POWER-BRIDGE/releases)**
+
+Enlace directo reservado para cuando se publique un APK verificado con el nombre exacto `OTG-POWER-BRIDGE.apk`:
+
+`https://github.com/luis171987/OTG-POWER-BRIDGE/releases/latest/download/OTG-POWER-BRIDGE.apk`
+
+Tras publicar el APK, vuelve a ejecutar el script `PUBLICAR_README_APK_TERMUX.sh` para activar el botón de descarga directa en este README.
+
+### Instalación en el teléfono
+
+1. Abre el enlace de descarga en tu navegador Android.
+2. Cuando haya un APK publicado, toca **Descargar** y ábrelo desde **Descargas**.
+3. Si Android lo solicita, autoriza temporalmente **Instalar aplicaciones desconocidas** solo para el navegador o gestor de archivos que hayas elegido. No desactives Play Protect.
+4. Comprueba el nombre del archivo, su origen GitHub y la firma del instalador cuando estén disponibles; instala únicamente versiones verificadas.
+5. Abre **OTG POWER BRIDGE**, conecta un **hub USB compatible con datos y carga pasante**, y concede acceso a las carpetas que desees gestionar mediante el selector de Android.
+
+> ⚠️ **Importante:** la app no convierte un power bank en un hub USB. Que el teléfono pueda cargar y usar memoria OTG al mismo tiempo depende de sus características eléctricas, del hub y de la negociación USB. Android 8+ es el mínimo de proyecto, no una garantía de compatibilidad universal.
+
+**[📖 Ver tutorial ilustrado de conexión y transferencia](#-tutorial-de-conexión-física)** · **[🧩 Consultar código fuente](https://github.com/luis171987/OTG-POWER-BRIDGE)**
+<!-- OTG:APK:END -->
+
 ## 📢 Comparte el repositorio en WhatsApp y Facebook
 
 ![Imagen de vista previa social de OTG POWER BRIDGE, basada en el logo oficial de GENAI INDUSTRIES](assets/SOCIAL_PREVIEW_OTG_POWER_BRIDGE_1280x640.jpg)
