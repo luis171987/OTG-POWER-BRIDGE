@@ -1,0 +1,21 @@
+# Generated/local/private
+.gradle/
+**/build/
+build_logs/
+local.properties
+.idea/
+*.iml
+*.apk
+*.aab
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+.env
+.env.*
+evidence/
+private/
+reports/
+.DS_Store

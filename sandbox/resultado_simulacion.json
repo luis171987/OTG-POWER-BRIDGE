@@ -1,0 +1,79 @@
+{
+  "sistema": "GENAI USB POWER BRIDGE",
+  "version": "0.1.0-sandbox",
+  "fecha_utc": "2026-11-05T06:01:25.595482+00:00",
+  "tipo": "SIMULACION_LOGICA_NO_HARDWARE",
+  "resultado_tests": "7/7 APROBADOS",
+  "escenarios": [
+    {
+      "escenario": "memoria_directa_en_telefono",
+      "carga_teorica": false,
+      "ruta_datos_usb_modelada": true,
+      "acceso_archivos_teorico": true,
+      "lectura_y_escritura_si_montado": true,
+      "simultaneidad": "NO",
+      "explicacion": "El teléfono funciona como host OTG; no recibe carga.",
+      "condicion_importante": "No verifica circuito interno PB855, negociación PD ni compatibilidad física del teléfono"
+    },
+    {
+      "escenario": "memoria_en_powerbank_sin_puente_datos",
+      "carga_teorica": true,
+      "ruta_datos_usb_modelada": false,
+      "acceso_archivos_teorico": "INCIERTO",
+      "lectura_y_escritura_si_montado": false,
+      "simultaneidad": "NO",
+      "explicacion": "Escenario supuesto: power bank solo entrega alimentación, sin rutas D+/D-/USB-C de datos.",
+      "condicion_importante": "No verifica circuito interno PB855, negociación PD ni compatibilidad física del teléfono"
+    },
+    {
+      "escenario": "hub_pd_otg_telefono_compatible",
+      "carga_teorica": true,
+      "ruta_datos_usb_modelada": true,
+      "acceso_archivos_teorico": true,
+      "lectura_y_escritura_si_montado": true,
+      "simultaneidad": "SI_EN_EL_MODELO",
+      "explicacion": "Escenario positivo hipotético: hub soporta host USB y PD passthrough, teléfono también.",
+      "condicion_importante": "No verifica circuito interno PB855, negociación PD ni compatibilidad física del teléfono"
+    },
+    {
+      "escenario": "hub_pd_otg_telefono_no_compatible",
+      "carga_teorica": true,
+      "ruta_datos_usb_modelada": true,
+      "acceso_archivos_teorico": false,
+      "lectura_y_escritura_si_montado": true,
+      "simultaneidad": "NO",
+      "explicacion": "Escenario negativo hipotético: el teléfono no sostiene host OTG mientras carga.",
+      "condicion_importante": "No verifica circuito interno PB855, negociación PD ni compatibilidad física del teléfono"
+    },
+    {
+      "escenario": "hub_pd_otg_compatibilidad_desconocida",
+      "carga_teorica": true,
+      "ruta_datos_usb_modelada": true,
+      "acceso_archivos_teorico": "INCIERTO",
+      "lectura_y_escritura_si_montado": true,
+      "simultaneidad": "PENDIENTE_VALIDACION_FISICA",
+      "explicacion": "Estado real actual: falta ensayo físico de carga + OTG.",
+      "condicion_importante": "No verifica circuito interno PB855, negociación PD ni compatibilidad física del teléfono"
+    },
+    {
+      "escenario": "hub_pd_otg_sin_memoria",
+      "carga_teorica": true,
+      "ruta_datos_usb_modelada": false,
+      "acceso_archivos_teorico": false,
+      "lectura_y_escritura_si_montado": false,
+      "simultaneidad": "NO",
+      "explicacion": "La memoria fue extraída o se perdió la conexión.",
+      "condicion_importante": "No verifica circuito interno PB855, negociación PD ni compatibilidad física del teléfono"
+    },
+    {
+      "escenario": "hub_pd_otg_memoria_solo_lectura",
+      "carga_teorica": true,
+      "ruta_datos_usb_modelada": true,
+      "acceso_archivos_teorico": true,
+      "lectura_y_escritura_si_montado": false,
+      "simultaneidad": "SI_EN_EL_MODELO",
+      "explicacion": "La memoria o el DocumentsProvider no admite escritura.",
+      "condicion_importante": "No verifica circuito interno PB855, negociación PD ni compatibilidad física del teléfono"
+    }
+  ]
+}
