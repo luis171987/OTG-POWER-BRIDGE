@@ -1,4 +1,4 @@
-name: Android CI — build de prueba
+name: Android CI — Cyber Cockpit V0.6.1 candidato
 on:
   push:
     branches: [main]
@@ -28,8 +28,8 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-      - name: Validar panel real Cyber Cockpit V0.6.0
-        run: python3 scripts/validar_ui_v06.py
+      - name: Validar reconstrucción nativa Cyber Cockpit V0.6.1
+        run: python3 scripts/validar_ui_v061.py && python3 scripts/validar_modo_real.py
       - name: Compilar APK debug (NO release pública)
         run: gradle --no-daemon --console=plain :app:assembleDebug
       - name: Verificar archivo APK
@@ -40,5 +40,5 @@ jobs:
       - name: Publicar artefacto CI para revisión (no release)
         uses: actions/upload-artifact@v4
         with:
-          name: OTG-POWER-BRIDGE-debug-candidato
+          name: OTG-POWER-BRIDGE-v061-debug-candidato
           path: app/build/outputs/apk/debug/app-debug.apk
