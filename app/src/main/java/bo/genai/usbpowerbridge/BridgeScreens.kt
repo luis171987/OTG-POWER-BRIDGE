@@ -44,6 +44,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -52,11 +54,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -71,8 +77,9 @@ import java.util.Locale
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
+import kotlin.math.max
 
-/** Capa visual V0.6.1. Instrumentos vinculados a Android real; SAF permanece separado. */
+/** Capa nativa V0.6.2. Arte ornamental aprobado; métricas solo de API Android y SAF. */
 internal data class DeviceSpace(val total: Long?, val available: Long?) {
     companion object {
         fun read(context: Context): DeviceSpace = runCatching {
@@ -153,7 +160,7 @@ internal fun BridgeInterface(data: BridgeUiData, actions: BridgeActions) {
             painter = painterResource(R.drawable.cyber_cockpit_backdrop),
             contentDescription = null,
             modifier = Modifier.fillMaxSize().alpha(.80f),
-            contentScale = ContentScale.FillBounds
+            contentScale = ContentScale.Crop
         )
         Box(Modifier.fillMaxSize().background(
             Brush.verticalGradient(listOf(Color(0x7800081A), Color(0x69041629), SpaceBg.copy(alpha = .91f)))
@@ -166,8 +173,8 @@ internal fun BridgeInterface(data: BridgeUiData, actions: BridgeActions) {
                         Column(
                             modifier = Modifier.fillMaxSize()
                                 .verticalScroll(rememberScrollState())
-                                .padding(horizontal = 12.dp, vertical = if (compact) 6.dp else 10.dp),
-                            verticalArrangement = Arrangement.spacedBy(if (compact) 8.dp else 12.dp)
+                                .padding(horizontal = 9.dp, vertical = if (compact) 5.dp else 8.dp),
+                            verticalArrangement = Arrangement.spacedBy(if (compact) 7.dp else 9.dp)
                         ) {
                             when (page) {
                                 Page.HOME -> HomePage(data, actions, animations) { go(it) }
@@ -182,7 +189,7 @@ internal fun BridgeInterface(data: BridgeUiData, actions: BridgeActions) {
                                 )
                             }
                             Text(
-                                "GENAI INDUSTRIES  •  CYBER COCKPIT V0.6.1  •  TELEMETRÍA REAL",
+                                "GENAI INDUSTRIES  •  CYBER COCKPIT V0.6.2  •  DATOS DE ANDROID",
                                 Modifier.fillMaxWidth().padding(vertical = 12.dp),
                                 color = TextSub, textAlign = TextAlign.Center, fontSize = 9.sp,
                                 letterSpacing = .6.sp
@@ -211,66 +218,56 @@ internal fun BridgeInterface(data: BridgeUiData, actions: BridgeActions) {
 
 @Composable
 private fun BrandHero(data: BridgeUiData) {
-    Box(
-        modifier = Modifier.fillMaxWidth().height(117.dp)
-            .background(Brush.verticalGradient(listOf(Color(0xFF06172B), Color(0xFF01101E))))
-    ) {
+    Column(Modifier.fillMaxWidth().background(Color(0xFF020A16))) {
         Image(
-            painter = painterResource(R.drawable.brand_banner),
-            contentDescription = "Logotipo OTG POWER BRIDGE — GENAI INDUSTRIES",
-            modifier = Modifier.fillMaxWidth().height(91.dp),
-            contentScale = ContentScale.Fit
+            painter = painterResource(R.drawable.cyber_hero_v062),
+            contentDescription = "OTG POWER BRIDGE — GENAI INDUSTRIES",
+            modifier = Modifier.fillMaxWidth().height(104.dp),
+            contentScale = ContentScale.FillBounds
         )
         Row(
-            Modifier.fillMaxWidth().align(Alignment.BottomCenter)
-                .background(Color(0xB6001025))
-                .padding(horizontal = 14.dp, vertical = 6.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            Modifier.fillMaxWidth()
+                .background(Brush.horizontalGradient(listOf(Color(0xFF102F4A), Color(0xFF031328), Color(0xFF172E45))))
+                .padding(horizontal = 12.dp, vertical = 5.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text("◈  CYBER COCKPIT", color = Cyan, fontWeight = FontWeight.Black,
-                letterSpacing = 1.3.sp, fontSize = 11.sp)
-            Text("V0.6.1  •  ANDROID", color = Amber, fontWeight = FontWeight.Bold,
-                fontSize = 10.sp)
-            Text(if (data.power.charging) "● CARGANDO" else "● EN VIVO",
-                color = if (data.power.charging) Lime else Cyan,
-                fontWeight = FontWeight.Bold, fontSize = 9.sp)
+            Text("◈ CYBER COCKPIT V0.6.2", color = Cyan, fontSize = 10.sp,
+                letterSpacing = .5.sp, fontWeight = FontWeight.Black)
+            Text("● ${if (data.power.charging) "CARGANDO" else "ENERGÍA: ${data.power.source}"}",
+                color = if (data.power.charging) Lime else Amber, fontSize = 9.sp,
+                maxLines = 1, fontWeight = FontWeight.Bold)
         }
-        Canvas(Modifier.fillMaxWidth().height(2.dp).align(Alignment.BottomCenter)) {
-            drawLine(brush = Brush.horizontalGradient(listOf(Blue, Cyan, Amber, Blue)),
-                start = Offset.Zero, end = Offset(size.width, 0f), strokeWidth = 2.dp.toPx())
+        Canvas(Modifier.fillMaxWidth().height(3.dp)) {
+            drawLine(Brush.horizontalGradient(listOf(Color.Transparent, Blue, Cyan, Amber, Color.Transparent)),
+                Offset(0f, 0f), Offset(size.width, 0f), strokeWidth = 3.dp.toPx())
         }
     }
 }
 
 @Composable
 private fun BottomNavigation(selected: Page, onSelect: (Page) -> Unit) {
-    Row(
-        modifier = Modifier.fillMaxWidth()
-            .background(Brush.verticalGradient(listOf(Color(0xF60A2746), Color(0xFF020918))))
-            .border(1.dp, Brush.horizontalGradient(listOf(Blue, Titanium, Cyan)),
-                RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
-            .padding(horizontal = 5.dp, vertical = 6.dp),
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
-    ) {
-        Page.values().forEach { page ->
-            val active = selected == page
-            val tone = if (active) Amber else Cyan
-            Column(
-                modifier = Modifier.weight(1f).height(58.dp)
-                    .clip(RoundedCornerShape(7.dp))
-                    .background(Brush.verticalGradient(
-                        if (active) listOf(Color(0xFF574121), Color(0xFF112C49), Color(0xFF0A1425))
-                        else listOf(Color(0xFF132D4B), Color(0xFF041023))))
-                    .border(if (active) 1.3.dp else .6.dp, tone.copy(alpha = if (active) 1f else .30f), RoundedCornerShape(7.dp))
-                    .clickable { onSelect(page) },
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(page.icon, color = tone, fontSize = 24.sp, fontWeight = FontWeight.Bold)
-                Text(page.caption, color = if (active) TextHi else TextSub,
-                    fontWeight = if (active) FontWeight.Bold else FontWeight.Normal,
-                    fontSize = 9.sp, maxLines = 1, textAlign = TextAlign.Center)
+    val art = when (selected) {
+        Page.HOME -> R.drawable.cyber_nav_home_v062
+        Page.TRANSFER -> R.drawable.cyber_nav_transfer_v062
+        Page.STORAGE -> R.drawable.cyber_nav_storage_v062
+        Page.TOOLS -> R.drawable.cyber_nav_tools_v062
+        Page.SETTINGS -> R.drawable.cyber_nav_settings_v062
+    }
+    Box(Modifier.fillMaxWidth().height(88.dp).background(SpaceBg)) {
+        Image(
+            painter = painterResource(art),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.FillBounds
+        )
+        Row(Modifier.fillMaxSize()) {
+            Page.values().forEach { page ->
+                Box(
+                    Modifier.weight(1f).fillMaxSize()
+                        .semantics { contentDescription = "Ir a ${page.caption}" }
+                        .clickable { onSelect(page) }
+                )
             }
         }
     }
@@ -281,42 +278,52 @@ private fun NeonPanel(
     title: String, accent: Color = Cyan,
     content: @Composable ColumnScope.() -> Unit
 ) {
-    val shape = RoundedCornerShape(12.dp)
-    Box(Modifier.fillMaxWidth()
-        .shadow(12.dp, shape, ambientColor = accent.copy(alpha = .21f), spotColor = accent.copy(alpha = .29f))
-        .clip(shape)
-        .background(Brush.verticalGradient(listOf(Color(0xF4224262), Color(0xF20A1A2E), Color(0xEF061325))))
+    Box(Modifier.fillMaxWidth().padding(horizontal = 1.dp, vertical = 2.dp)
+        .shadow(12.dp, RoundedCornerShape(10.dp),
+            ambientColor = accent.copy(alpha = .34f), spotColor = accent.copy(alpha = .4f))
     ) {
         Canvas(Modifier.matchParentSize()) {
-            val line = 1.dp.toPx()
-            drawRoundRect(
-                brush = Brush.linearGradient(listOf(accent.copy(alpha = .85f), Titanium.copy(alpha = .62f), Blue.copy(alpha = .35f), accent.copy(alpha = .7f))),
-                cornerRadius = CornerRadius(12.dp.toPx()),
-                style = Stroke(width = line)
-            )
-            drawLine(Titanium.copy(alpha = .30f), Offset(14.dp.toPx(), 4.dp.toPx()),
-                Offset(size.width * .62f, 4.dp.toPx()), strokeWidth = 1.dp.toPx())
-            drawLine(accent.copy(alpha = .65f), Offset(size.width * .72f, size.height - 4.dp.toPx()),
-                Offset(size.width - 16.dp.toPx(), size.height - 4.dp.toPx()), strokeWidth = 2.dp.toPx())
-            val x = size.width - 25.dp.toPx()
-            drawCircle(accent.copy(alpha = .42f), 3.dp.toPx(), Offset(x, 15.dp.toPx()))
-            drawCircle(Color.White.copy(alpha = .6f), 1.dp.toPx(), Offset(x, 15.dp.toPx()))
+            val bevel = 11.dp.toPx()
+            val w = size.width
+            val h = size.height
+            val body = Path().apply {
+                moveTo(bevel, 0f); lineTo(w-bevel, 0f); lineTo(w, bevel)
+                lineTo(w, h-bevel); lineTo(w-bevel,h); lineTo(bevel,h)
+                lineTo(0f,h-bevel); lineTo(0f,bevel); close()
+            }
+            drawPath(body, Brush.verticalGradient(listOf(Color(0xFF1B4164), Color(0xFF061A30), Color(0xFF020C1A))))
+            drawPath(body, Brush.linearGradient(listOf(Blue, accent, Titanium, Color(0xFF173755), accent)),
+                style = Stroke(width = 1.8.dp.toPx(), join = StrokeJoin.Round))
+            drawPath(body, accent.copy(alpha = .15f),
+                style = Stroke(width = 5.5.dp.toPx(), join = StrokeJoin.Round))
+            val stripeY = 28.dp.toPx().coerceAtMost(h*.2f)
+            drawLine(Brush.horizontalGradient(listOf(accent.copy(alpha = .86f), Blue.copy(alpha = .45f), Color.Transparent)),
+                Offset(bevel, stripeY), Offset(w-bevel, stripeY), strokeWidth = 2.dp.toPx())
+            for (index in 1..9) {
+                val xx = index * w/10f
+                drawLine(Color(0x141FB9ED), Offset(xx, stripeY + 8.dp.toPx()),
+                    Offset(xx, h - bevel), strokeWidth = .4.dp.toPx())
+            }
+            drawLine(Brush.horizontalGradient(listOf(Color.Transparent, Cyan, Amber, Color.Transparent)),
+                Offset(bevel,h-3.dp.toPx()), Offset(w-bevel,h-3.dp.toPx()), strokeWidth = 2.dp.toPx())
+            val k = 17.dp.toPx()
+            drawLine(Amber.copy(alpha = .85f),Offset(0f,h-k), Offset(0f,h-bevel), strokeWidth = 3.dp.toPx())
+            drawLine(Cyan.copy(alpha = .88f),Offset(bevel,0f), Offset(k+29.dp.toPx(),0f),strokeWidth=3.dp.toPx())
+            drawCircle(Brush.radialGradient(listOf(accent.copy(alpha = .26f), Color.Transparent)),
+                radius = 62.dp.toPx(), center = Offset(w*.82f, h*.18f))
         }
         Column(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 13.dp),
+            Modifier.fillMaxWidth().padding(horizontal = 13.dp, vertical = 13.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Box(Modifier.width(4.dp).height(18.dp).clip(RoundedCornerShape(2.dp))
-                    .background(Brush.verticalGradient(listOf(Color.White, accent, Blue))))
+                Box(Modifier.width(5.dp).height(20.dp).background(
+                    Brush.verticalGradient(listOf(Color.White, accent, Blue))))
                 Spacer(Modifier.width(8.dp))
                 Text(title.uppercase(Locale.ROOT), Modifier.weight(1f), color = TextHi,
-                    fontSize = 12.sp, fontWeight = FontWeight.ExtraBold, letterSpacing = .8.sp)
-                Text("◈", color = accent, fontSize = 13.sp)
-            }
-            Canvas(Modifier.fillMaxWidth().height(2.dp)) {
-                drawLine(brush = Brush.horizontalGradient(listOf(accent, accent.copy(alpha = .4f), Color.Transparent)),
-                    start = Offset.Zero, end = Offset(size.width, 0f), strokeWidth = 1.7.dp.toPx())
+                    fontSize = 12.sp, fontWeight = FontWeight.Black, letterSpacing = .55.sp,
+                    lineHeight = 15.sp, maxLines = 2)
+                Text("◀  ◈  ▶", color = accent.copy(alpha = .8f), fontSize = 9.sp)
             }
             content()
         }
@@ -328,18 +335,29 @@ private fun NeonButton(
     label: String, enabled: Boolean, primary: Boolean = true,
     modifier: Modifier = Modifier, onClick: () -> Unit
 ) {
-    val tone = if (primary) Cyan else Amber
-    Box(
-        modifier = modifier.height(49.dp).clip(RoundedCornerShape(8.dp))
-            .background(Brush.verticalGradient(if (enabled)
-                listOf(tone.copy(alpha = .34f), Color(0xFF143452), Color(0xFF051222))
-                else listOf(Color(0xFF1C2D40), Color(0xFF0A1A2D))))
-            .border(1.dp, if (enabled) tone else Color(0xFF4A5A6B), RoundedCornerShape(8.dp))
-            .clickable(enabled = enabled, onClick = onClick), contentAlignment = Alignment.Center
+    val tone = if (primary) Cyan else Color(0xFFFF7767)
+    val shape = RoundedCornerShape(topStart = 16.dp, bottomEnd = 16.dp, topEnd = 4.dp, bottomStart = 4.dp)
+    Box(modifier.height(52.dp).shadow(7.dp, shape,
+        ambientColor = tone.copy(alpha = if (enabled) .35f else 0f))
+        .clip(shape)
+        .background(Brush.verticalGradient(if (enabled)
+            listOf(tone.copy(alpha = .52f), Color(0xFF165078), Color(0xFF031124))
+            else listOf(Color(0xFF2A374A), Color(0xFF0A182C))))
+        .border(1.3.dp, if (enabled) tone else Color(0xFF536474), shape)
+        .clickable(enabled = enabled, onClick = onClick), contentAlignment = Alignment.Center
     ) {
+        Canvas(Modifier.matchParentSize()) {
+            drawLine(Color.White.copy(alpha = if (enabled) .47f else .14f),
+                Offset(17.dp.toPx(), 3.dp.toPx()), Offset(size.width-8.dp.toPx(),3.dp.toPx()),
+                strokeWidth = 1.3.dp.toPx())
+            drawLine(tone.copy(alpha = if (enabled) .92f else .2f),
+                Offset(10.dp.toPx(), size.height-3.dp.toPx()),
+                Offset(size.width-15.dp.toPx(),size.height-3.dp.toPx()),strokeWidth=2.dp.toPx())
+        }
         Text(label, fontWeight = FontWeight.ExtraBold, fontSize = 11.sp,
             color = if (enabled) TextHi else Color(0xFF8DA0B1),
-            maxLines = 1, textAlign = TextAlign.Center, letterSpacing = .1.sp)
+            maxLines = 2, lineHeight = 13.sp, textAlign = TextAlign.Center, letterSpacing = .2.sp,
+            modifier = Modifier.padding(horizontal = 6.dp))
     }
 }
 
@@ -480,64 +498,103 @@ private fun CyberNode(glyph: String, title: String, subtitle: String, active: Bo
 }
 
 @Composable
+private fun InstrumentCell(
+    label: String, percent: Int?, primaryValue: String, secondary: String,
+    accent: Color, modifier: Modifier = Modifier,
+    body: @Composable (() -> Unit)? = null
+) {
+    Box(modifier.background(Brush.verticalGradient(
+        listOf(Color(0xFF21496F), Color(0xFF071D32), Color(0xFF020D1A))))
+        .border(1.dp, accent.copy(alpha = .87f), RoundedCornerShape(7.dp))) {
+        Column(Modifier.fillMaxWidth().padding(6.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(5.dp)) {
+            Text(label, color = TextHi, fontSize = 9.sp, maxLines = 2,
+                lineHeight = 11.sp, fontWeight = FontWeight.Black, textAlign = TextAlign.Center)
+            if (body != null) body()
+            else CircleGauge(percent ?: -1, label, accent, modifier = Modifier.size(95.dp))
+            Text(primaryValue, color = accent, fontSize = 12.sp,
+                fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center,
+                lineHeight = 14.sp, maxLines = 2)
+            Text(secondary, color = TextSub, fontSize = 9.sp,
+                textAlign = TextAlign.Center, lineHeight = 11.sp, maxLines = 3)
+        }
+    }
+}
+
+@Composable
 private fun HomePage(data: BridgeUiData, actions: BridgeActions, animations: Boolean, go: (Page) -> Unit) {
-    NeonPanel("Centro de mando • Cyber Cockpit", Cyan) {
+    Row(horizontalArrangement = Arrangement.spacedBy(9.dp)) {
+        NeonButton("⛓  CONECTAR", !data.busy,
+            modifier = Modifier.weight(1f), onClick = actions.connect)
+        NeonButton("⛓̸  DESCONECTAR", data.session && !data.busy, primary = false,
+            modifier = Modifier.weight(1f), onClick = actions.disconnect)
+    }
+    NeonPanel("Centro de control · Estado en vivo", Lime) {
         val state = when {
-            data.session && data.simultaneous -> "ARCHIVOS + ALIMENTACIÓN"
+            data.session && data.simultaneous -> "ARCHIVOS + ALIMENTACIÓN DETECTADOS"
             data.session -> "SESIÓN DE ARCHIVOS ACTIVA"
             else -> "SIN SESIÓN DE ARCHIVOS"
         }
         LivePill(state, if (data.session) true else null,
             if (data.session) "Carpeta autorizada: ${data.selectedRoot?.name ?: "Sin etiqueta"}"
-            else "Conectá una carpeta real con el selector de Android")
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            NeonButton("⛓  CONECTAR", !data.busy, modifier = Modifier.weight(1f), onClick = actions.connect)
-            NeonButton("✕  DESCONECTAR", data.session && !data.busy,
-                primary = false, modifier = Modifier.weight(1f), onClick = actions.disconnect)
+            else "Conecta una carpeta con el selector real de Android")
+        Row(horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+            CyberMiniMonitor("HOST USB", if (data.usb.hostFeatureReported) "SÍ" else "NO", Cyan, Modifier.weight(1f))
+            CyberMiniMonitor("DISPOSITIVOS", "${data.usb.devices.size}", Amber, Modifier.weight(1f))
+            CyberMiniMonitor("CARPETA", if (data.session) "OK" else "—", Lime, Modifier.weight(1f))
         }
-        LiveDiagram(data, animations)
-        Text("CONEXIÓN • ENERGÍA • ARCHIVOS", Modifier.fillMaxWidth(),
-            fontSize = 9.sp, color = Cyan, letterSpacing = 1.6.sp, textAlign = TextAlign.Center)
     }
-    NeonPanel("Instrumentación de energía", Amber) {
-        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            CircleGauge(data.power.percent, "BATERÍA", if (data.power.percent in 0..15) Amber else Lime)
-            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Metric("Estado", if (data.power.charging) "CARGANDO" else "SIN CARGA", if (data.power.charging) Lime else Amber)
-                Metric("Fuente", data.power.source)
-                Metric("Power bank", "Sin telemetría", Amber)
-                Text("La carga real depende del teléfono y del hub USB-C PD.", color = TextSub, fontSize = 10.sp)
+    val phone = data.phoneSpace
+    val storagePercent = if (phone.total != null && phone.available != null && phone.total > 0L)
+        ((phone.total - phone.available).coerceAtLeast(0L) * 100L / phone.total).toInt().coerceIn(0,100) else null
+    NeonPanel("Instrumentación del dispositivo", Amber) {
+        Row(horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+            InstrumentCell("BATERÍA", data.power.percent,
+                if (data.power.charging) "CARGANDO" else "SIN CARGA",
+                data.power.source, if (data.power.percent in 0..15) Amber else Lime,
+                Modifier.weight(1f))
+            InstrumentCell("POWER BANK", null, "SIN TELEMETRÍA",
+                "Android no informa su carga", Amber, Modifier.weight(1f)) {
+                Box(Modifier.size(95.dp), contentAlignment = Alignment.Center) {
+                    Image(painterResource(R.drawable.cyber_otg_core_v062), null,
+                        Modifier.size(77.dp), contentScale = ContentScale.Fit)
+                    Text("⚡", color = Amber, fontSize = 33.sp, fontWeight = FontWeight.Bold)
+                }
             }
+            InstrumentCell("ALMACENAMIENTO", storagePercent,
+                TelemetryFormats.bytes(phone.available), "Libre en datos del teléfono",
+                Cyan, Modifier.weight(1f))
         }
+        Text("Instrumentos conectados a Android. Sin porcentajes ni potencia ficticios del power bank.",
+            color = TextSub, fontSize = 9.sp)
     }
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        CyberMiniMonitor("USB HOST", if (data.usb.hostFeatureReported) "SÍ" else "NO", Cyan, Modifier.weight(1f))
-        CyberMiniMonitor("EQUIPOS", "${data.usb.devices.size}", Amber, Modifier.weight(1f))
-        CyberMiniMonitor("EXTRAÍBLE", if (data.removable) "SÍ" else "—", Lime, Modifier.weight(1f))
+    NeonPanel("Diagrama de conexión · Datos y energía", Cyan) {
+        LiveDiagram(data, animations)
     }
-    NeonPanel("Monitor de transferencia", Cyan) {
+    NeonPanel("Transferencia en tiempo real", Cyan) {
         val pct = data.transfer?.let { TelemetryFormats.percent(it.copiedBytes, it.totalBytes) }
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
             CircleGauge(pct ?: -1, "COPIA", if (data.transfer?.verified == true) Lime else Cyan,
-                modifier = Modifier.size(120.dp))
+                modifier = Modifier.size(119.dp))
             Column(Modifier.weight(1f)) {
                 TransferSummary(data.transfer)
             }
         }
+        TransferSpeedPlot(data.transfer)
         NeonButton("ABRIR CENTRO DE TRANSFERENCIAS  ›", true, onClick = { go(Page.TRANSFER) })
     }
-    NeonPanel("Almacenamiento real", Amber) {
+    NeonPanel("Monitores de almacenamiento", Amber) {
         Metric("Carpeta autorizada", data.selectedRoot?.name ?: "Sin seleccionar")
-        Metric("Capacidad disponible", TelemetryFormats.bytes(data.evidence.availableBytes))
+        Metric("Espacio libre autorizado", TelemetryFormats.bytes(data.evidence.availableBytes))
         Metric("Carga + extraíble", if (data.simultaneous) "Ambos observados" else "No confirmado",
             if (data.simultaneous) Lime else Amber)
-        NeonButton("EXPLORADOR DE ARCHIVOS  ›", true, onClick = { go(Page.STORAGE) })
+        NeonButton("EXPLORAR MEMORIA USB / TELÉFONO  ›", true, onClick = { go(Page.STORAGE) })
     }
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         NeonButton("HERRAMIENTAS", true, modifier = Modifier.weight(1f), onClick = { go(Page.TOOLS) })
-        NeonButton("ACTUALIZAR", !data.busy, primary = false, modifier = Modifier.weight(1f),
-            onClick = actions.refresh)
+        NeonButton("ACTUALIZAR", !data.busy, primary = false,
+            modifier = Modifier.weight(1f), onClick = actions.refresh)
     }
 }
 
@@ -583,6 +640,47 @@ private fun TransferSummary(tx: TransferDisplay?) {
     if (tx.verified) Text("✓ SHA-256 verificado. Origen conservado.", color = Lime, fontSize = 12.sp)
 }
 
+
+@Composable
+private fun TransferSpeedPlot(tx: TransferDisplay?) {
+    val samples = remember(tx?.name, tx?.startElapsedMs) { mutableStateListOf<Float>() }
+    var prior by remember(tx?.name, tx?.startElapsedMs) { mutableStateOf<Pair<Long, Long>?>(null) }
+    LaunchedEffect(tx?.copiedBytes, tx?.startElapsedMs) {
+        if (tx != null && tx.startElapsedMs > 0L) {
+            val now = SystemClock.elapsedRealtime()
+            val last = prior
+            if (last != null && now > last.first && tx.copiedBytes >= last.second) {
+                val bytesPerSec = (tx.copiedBytes - last.second).toFloat() * 1000f / (now - last.first)
+                samples.add(bytesPerSec)
+                if (samples.size > 34) samples.removeAt(0)
+            }
+            prior = now to tx.copiedBytes
+        }
+    }
+    Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
+        Text("VELOCIDAD OBSERVADA · ${if (samples.isEmpty()) "SIN MUESTRAS" else "${samples.size} MUESTRAS"}",
+            color = Cyan, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+        Canvas(Modifier.fillMaxWidth().height(44.dp)) {
+            drawRect(Brush.verticalGradient(listOf(Color(0xA90D2742), Color(0xA0021120))))
+            val horizontal = size.height / 4f
+            for (i in 1..3) drawLine(Cyan.copy(alpha=.13f), Offset(0f,i*horizontal),
+                Offset(size.width,i*horizontal),strokeWidth=.6.dp.toPx())
+            if (samples.size > 1) {
+                val maxValue = max(1f, samples.maxOrNull() ?: 1f)
+                val points = samples.toList()
+                val path = Path()
+                points.forEachIndexed { index, v ->
+                    val x = index.toFloat() / max(1,points.size-1) * size.width
+                    val y = size.height-4.dp.toPx() - (v/maxValue)*(size.height-8.dp.toPx())
+                    if (index == 0) path.moveTo(x,y) else path.lineTo(x,y)
+                }
+                drawPath(path, Brush.horizontalGradient(listOf(Cyan,Lime,Amber)),
+                    style=Stroke(width=2.dp.toPx(), cap=StrokeCap.Round, join=StrokeJoin.Round))
+            }
+        }
+    }
+}
+
 @Composable
 private fun TransferPage(data: BridgeUiData, actions: BridgeActions, animations: Boolean) {
     NeonPanel("↔ Estación de transferencia", Cyan) {
@@ -619,7 +717,10 @@ private fun TransferPage(data: BridgeUiData, actions: BridgeActions, animations:
         Text("La app hace una copia nueva y comprueba SHA-256. Por ahora se procesa un archivo a la vez; no existe pausa/reanudación.",
             fontSize = 11.sp, color = TextSub)
     }
-    NeonPanel("Transferencia real en curso") { TransferSummary(data.transfer) }
+    NeonPanel("Transferencia real en curso") {
+        TransferSummary(data.transfer)
+        TransferSpeedPlot(data.transfer)
+    }
     NeonPanel("Registro de operaciones", Amber) {
         Text(data.log, color = TextHi, fontSize = 12.sp)
         Text("Historial de la sesión actual; no se inventan transferencias anteriores.",
@@ -733,7 +834,7 @@ private fun StoragePage(data: BridgeUiData, actions: BridgeActions, technical: B
 
 @Composable
 private fun ToolsPage(data: BridgeUiData, actions: BridgeActions) {
-    NeonPanel("◈ Diagnóstico en vivo", Cyan) {
+    NeonPanel("◈ Diagnóstico y telemetría en vivo", Cyan) {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             CyberMiniMonitor("BATERÍA", if (data.power.percent >= 0) "${data.power.percent}%" else "—", Lime, Modifier.weight(1f))
             CyberMiniMonitor("USB HOST", if (data.usb.hostFeatureReported) "ON" else "OFF", Cyan, Modifier.weight(1f))
@@ -746,6 +847,7 @@ private fun ToolsPage(data: BridgeUiData, actions: BridgeActions) {
         Metric("Fuente de energía", data.power.source)
         Metric("Batería", if (data.power.percent >= 0) "${data.power.percent}%" else "No disponible")
         Metric("Carga externa", if (data.power.externalPower) "Detectada" else "No detectada")
+        Metric("Potencia real (W)", "Sin medición USB-PD disponible", Amber)
         Metric("Carpeta accesible", if (data.session) "Sí" else "No")
         Metric("Extraíble identificado", when(data.evidence.removable) {
             true -> "Sí (USB/SD)"; false -> "No"; null -> "Desconocido" })
@@ -786,7 +888,7 @@ private fun SettingsPage(
         SettingSwitch("Vista compacta", "Reduce espacios entre paneles.", compact, onCompact)
         SettingSwitch("Ver identificadores técnicos", "Muestra VID/PID e identificadores del volumen.",
             technical, onTechnical)
-        Text("Paleta oficial: azul cian + naranja metalizado, logotipo 3D aprobado.",
+        Text("Recursos gráficos aprobados: encabezado y navegación 3D. Métricas dinámicas en Compose.",
             color = TextSub, fontSize = 11.sp)
     }
     NeonPanel("Permisos y privacidad") {
@@ -805,7 +907,7 @@ private fun SettingsPage(
     }
     NeonPanel("Acerca del proyecto") {
         Metric("Aplicación", "OTG POWER BRIDGE")
-        Metric("Versión candidata", "0.6.1 Cyber Cockpit")
+        Metric("Versión candidata", "0.6.2 Cyber Cockpit · fidelidad visual")
         Metric("Plataforma", "Android 8+")
         Metric("Creador", "GENAI INDUSTRIES")
         Text("Dirección: Luis Carlos Moreno Jiménez · Santa Cruz de la Sierra, Bolivia.",

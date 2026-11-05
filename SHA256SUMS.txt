@@ -1,11 +1,11 @@
-434efd6b02d31d4d7d165f641d437a136a54f35185b091429a3697f0a1ad10bc  ./.github/workflows/android-debug.yml
+935a9e73bddecae0a4b1fc77f5c22f9e91f8e859ac559c54caaadd7ba485b5a8  ./.github/workflows/android-debug.yml
 77708a8c70c2f10d830d78759ef17c0ce0127c926dc7111c38764c1a6b93420e  ./.gitignore
 80c73061a62601a88714a76a8a04724d13464989e66586ac61a4b064a0369b7d  ./README.md
 68901c3dc5f782df972802e0e5d8d2f0f27efe314c4e386885322f7acee9187a  ./README_BUILD_ES.md
 ba000e5b6077293955508ede9476ad41b20653eef97647de5b303f781bef5ed0  ./README_PUBLICAR_ES.md
-275485e021c2fa2f5e04964a3638697568026340d474bc122c4330df69fbaf7b  ./app/build.gradle.kts
+5063c0319f7f7d3e5054190a70c8b0ada201af5dbcdbe5abcb7411dc2c82185e  ./app/build.gradle.kts
 3029e1901d9e5116c275e7aabb7a0a2bb0aab28fbaccb87ba0e514e2e6cf9a07  ./app/src/main/AndroidManifest.xml
-bddb6ffa78607a980cf121692f8543d39bd0c8afad0ad4b8f0ca9cf9fb17bd92  ./app/src/main/java/bo/genai/usbpowerbridge/BridgeScreens.kt
+48bf833c0c5677e27de8506d4b8e42a9ef7c343b8909433bebc198e04b8a0823  ./app/src/main/java/bo/genai/usbpowerbridge/BridgeScreens.kt
 27403e712faeb13a65ad921cb3d7691da1daed8558670b5db2e048898f1aa370  ./app/src/main/java/bo/genai/usbpowerbridge/MainActivity.kt
 8e0245be464a6e8631e5d39c8e9ade5764099540e55349c0b6831e232a6327c3  ./app/src/main/java/bo/genai/usbpowerbridge/RealStorage.kt
 f076f01b8f44df685531725ca93035db1c2bbd8667fbee030f19f83db57b8da8  ./app/src/main/java/bo/genai/usbpowerbridge/SafeDocumentOps.kt
@@ -14,6 +14,13 @@ f076f01b8f44df685531725ca93035db1c2bbd8667fbee030f19f83db57b8da8  ./app/src/main
 8c63b73e9572d4c66f77ced6e548c98cb180d7f9558613b00a8c5c119494fe35  ./app/src/main/res/drawable-nodpi/brand_banner.webp
 ae3dd002b38fc0adfce96a24ff665fd72cf96cc112cd606c6880113d8e1eb730  ./app/src/main/res/drawable-nodpi/brand_logo.webp
 13a6fe3a0a2b7b36380286b0e2947988676ad98d40ef9c3d72554ba493df7a26  ./app/src/main/res/drawable-nodpi/cyber_cockpit_backdrop.webp
+4753f5100f5ff57c4449795774e9ceebe642eedade068797475fd50fb13996d8  ./app/src/main/res/drawable-nodpi/cyber_hero_v062.webp
+308303df0748745eb50f059ccead7b009fdfa04264758a0ae85f7fc0b24fde53  ./app/src/main/res/drawable-nodpi/cyber_nav_home_v062.webp
+fe1ab0238bd9762f31668f25a9d54594357b749422101f90f44861d075a42418  ./app/src/main/res/drawable-nodpi/cyber_nav_settings_v062.webp
+4dbf4ff553f55199e5ac55b4fa84eb9e57ab62886e5604705c22ca1fbebde0c9  ./app/src/main/res/drawable-nodpi/cyber_nav_storage_v062.webp
+31a8e27ae3e6b9e112d88dc97f678583b6ce501c36ce5e5cafee2f653619e666  ./app/src/main/res/drawable-nodpi/cyber_nav_tools_v062.webp
+ae9d73a16427ddf7a1110b7f2be9481c2c5a4a98055412917803fdd1ee16b6bf  ./app/src/main/res/drawable-nodpi/cyber_nav_transfer_v062.webp
+71cdf70ba14e45060be678ba92af7e42c901d6b76a0a5d93cc188cb80ea3fd8b  ./app/src/main/res/drawable-nodpi/cyber_otg_core_v062.webp
 d9b41c02f745c0045abab85bfd33196a340c4acf0644fa5af3c2874148c5eafa  ./app/src/main/res/mipmap-hdpi/ic_launcher.png
 a86c3341e4d450d0de2cbb905fd336203c886f0c14613b62d1d84659611dc332  ./app/src/main/res/mipmap-mdpi/ic_launcher.png
 54ba4b37498e7cdc4f7e6917acf716a6b03191dfec6000fe65d7656146a5d727  ./app/src/main/res/mipmap-xhdpi/ic_launcher.png
@@ -35,6 +42,7 @@ a6d3e0d63f17712f6c26edca485e4050c3f6666e8d8dce7031711f0bb682189f  ./assets/ui_ap
 61cd8e15a65a3ded440013250aa5c2bbc875158d0cf2db2e8fc5185ec3c69105  ./build.gradle.kts
 a976968e91d2b0de52b41134afe88bcb28774062127006c38b66743a5b7afe0d  ./docs/COMPARTIR_WHATSAPP_FACEBOOK.md
 8a10916eb278e35fa1d7d79e7ec703665650294ec33b33703bccc3acb2a0675e  ./docs/CYBER_COCKPIT_V061_PRUEBAS.md
+01c06148418d792f63bc26123224858a24f1ab3b864d59e649dbb40ef106555b  ./docs/CYBER_COCKPIT_V062_FIDELIDAD.md
 8fb4f240330bc09189be716414c9f29fe73f9637fb051711f90eba44fea0cd7c  ./docs/ESTADO_Y_LIMITES.md
 84435bd7baef7f2a3d7af5b45160e7fe11468bc2f91dad72fb2375684b038260  ./docs/FRONTEND_CYBER_COCKPIT_V06.md
 a85cffa3dd67f915d9eee70be641a5583fe44b98450dd024518054c2a297b00d  ./docs/MODO_REAL_ANDROID.md
@@ -54,5 +62,6 @@ ac1205cee1f19c1ace6f4bdd268fd44d640ff38fe28324a6f63bfcb9de544e3f  ./scripts/vali
 454be85e5d3823055a116ba71309970e161a7266edd7a28a6a438d5fa35e6337  ./scripts/validar_telemetria_v05.py
 285bde513514ea95e7422a194cc0bc2da316013152c2163681b29b62c21a1fc3  ./scripts/validar_ui_v06.py
 ad2ccd256a7c1886fcd8b7d922e32afbb78d0e261f7519ab3db4712839ab1d2a  ./scripts/validar_ui_v061.py
+cf2218843a6d24fd64c2015f8c663b1fddf034b6cd8aa8e7adb280df4fb6f54c  ./scripts/validar_ui_v062.py
 4410530dd51270236a89bf25e290ec9ed5b1acb28f9a73130850fe9efa20a039  ./settings.gradle.kts
 cfceed82e170176cc1bbba432635f95edccdda0c8f85dc6585177c30453c7d73  ./tests/TelemetryFormatsTest.kt
