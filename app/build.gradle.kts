@@ -12,8 +12,15 @@ android {
         applicationId = "bo.genai.usbpowerbridge"
         minSdk = 26
         targetSdk = 35
-        versionCode = 7
-        versionName = "0.6.0-visual-candidate"
+        versionCode = 10
+        versionName = "0.6.3"
+    }
+    // El APK debug se instala junto a V0.6.0 sin exigir desinstalación ni cambiar sus datos.
+    buildTypes {
+        getByName("debug") {
+            applicationIdSuffix = ".previewv063"
+            versionNameSuffix = ".preview"
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -26,6 +33,7 @@ android {
 dependencies {
     implementation(platform("androidx.compose:compose-bom:2024.12.01"))
     implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.animation:animation")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.foundation:foundation")
     implementation("androidx.activity:activity-compose:1.9.3")
