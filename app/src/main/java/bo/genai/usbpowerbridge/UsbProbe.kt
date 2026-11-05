@@ -5,13 +5,15 @@ import android.content.pm.PackageManager
 import android.hardware.usb.UsbConstants
 import android.hardware.usb.UsbManager
 
-/** Diagnóstico de enumeración USB. No fuerza el modo host, PD ni permisos de almacenamiento. */
+/** Enumeración USB real, sin asumir que un descriptor corresponde al volumen SAF elegido. */
 data class UsbDeviceSummary(
     val vendorId: Int,
     val productId: Int,
     val deviceClass: Int,
     val interfaceCount: Int,
-    val massStorageDescriptor: Boolean
+    val massStorageDescriptor: Boolean,
+    val manufacturer: String? = null,
+    val product: String? = null
 )
 
 data class UsbSnapshot(
@@ -22,23 +24,27 @@ data class UsbSnapshot(
 
 object UsbProbe {
     fun read(context: Context): UsbSnapshot {
-        val supportsHost = context.packageManager.hasSystemFeature(PackageManager.FEATURE_USB_HOST)
+        val host = context.packageManager.hasSystemFeature(PackageManager.FEATURE_USB_HOST)
         return try {
             val manager = context.getSystemService(Context.USB_SERVICE) as? UsbManager
-                ?: return UsbSnapshot(supportsHost, emptyList(), "Servicio USB no disponible")
+                ?: return UsbSnapshot(host, emptyList(), "Servicio USB no disponible")
             val devices = manager.deviceList.values.map { dev ->
-                val isMassStorage = dev.deviceClass == UsbConstants.USB_CLASS_MASS_STORAGE ||
-                    (0 until dev.interfaceCount).any { index ->
-                        dev.getInterface(index).interfaceClass == UsbConstants.USB_CLASS_MASS_STORAGE
+                val storage = dev.deviceClass == UsbConstants.USB_CLASS_MASS_STORAGE ||
+                    (0 until dev.interfaceCount).any { i ->
+                        dev.getInterface(i).interfaceClass == UsbConstants.USB_CLASS_MASS_STORAGE
                     }
-                UsbDeviceSummary(dev.vendorId, dev.productId, dev.deviceClass,
-                    dev.interfaceCount, isMassStorage)
+                UsbDeviceSummary(
+                    dev.vendorId, dev.productId, dev.deviceClass, dev.interfaceCount,
+                    storage,
+                    runCatching { dev.manufacturerName?.trim()?.takeIf { it.isNotEmpty() } }.getOrNull(),
+                    runCatching { dev.productName?.trim()?.takeIf { it.isNotEmpty() } }.getOrNull()
+                )
             }.sortedWith(compareBy<UsbDeviceSummary> { it.vendorId }.thenBy { it.productId })
-            UsbSnapshot(supportsHost, devices)
-        } catch (e: SecurityException) {
-            UsbSnapshot(supportsHost, emptyList(), "Sin autorización para enumerar USB")
+            UsbSnapshot(host, devices)
+        } catch (_: SecurityException) {
+            UsbSnapshot(host, emptyList(), "Android no autorizó enumerar dispositivos USB")
         } catch (e: RuntimeException) {
-            UsbSnapshot(supportsHost, emptyList(), "Error de consulta USB: ${e.javaClass.simpleName}")
+            UsbSnapshot(host, emptyList(), "Consulta USB: ${e.javaClass.simpleName}")
         }
     }
 }

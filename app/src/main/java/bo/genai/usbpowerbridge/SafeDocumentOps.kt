@@ -68,7 +68,8 @@ object SafeDocumentOps {
     }
 
     fun copyWithVerification(
-        resolver: ContentResolver, parent: DocumentFile, origin: DocumentFile, suffix: String
+        resolver: ContentResolver, parent: DocumentFile, origin: DocumentFile, suffix: String,
+        progress: ((copied: Long, total: Long?) -> Unit)? = null
     ): DocumentFile {
         require(origin.isFile) { "La operación requiere un archivo." }
         val originalName = origin.name ?: "archivo.bin"
@@ -81,6 +82,10 @@ object SafeDocumentOps {
             val copiedHash = MessageDigest.getInstance("SHA-256")
             val output = resolver.openOutputStream(created.uri, "w")
                 ?: throw IOException("El destino no es escribible")
+            val total = origin.length().takeIf { it > 0L }
+            var written = 0L
+            var lastProgressNs = 0L
+            progress?.invoke(0L, total)
             resolver.openInputStream(origin.uri)?.use { input ->
                 output.use { dest ->
                     val buffer = ByteArray(64 * 1024)
@@ -90,10 +95,17 @@ object SafeDocumentOps {
                         if (count == 0) continue
                         originalHash.update(buffer, 0, count)
                         dest.write(buffer, 0, count)
+                        written += count
+                        val now = System.nanoTime()
+                        if (now - lastProgressNs >= 120_000_000L) {
+                            progress?.invoke(written, total)
+                            lastProgressNs = now
+                        }
                     }
                     dest.flush()
                 }
             } ?: throw IOException("El origen no es legible")
+            progress?.invoke(written, total)
             resolver.openInputStream(created.uri)?.use { input ->
                 val buffer = ByteArray(64 * 1024)
                 while (true) {

@@ -9,7 +9,7 @@
 **Aplicación Android creada por GENAI INDUSTRIES**  
 **Creador y director:** Luis Carlos Moreno Jiménez — Santa Cruz de la Sierra, Bolivia.
 
-**Estado:** código fuente `v0.4.0-real-candidate` · interfaz sin simulador · **APK público de lanzamiento todavía no publicado**
+**Estado:** código fuente `v0.5.0-real-candidate` · interfaz sin simulador · **APK público de lanzamiento todavía no publicado**
 
 </div>
 
@@ -44,7 +44,7 @@ Tras publicar el APK, vuelve a ejecutar el script `PUBLICAR_README_APK_TERMUX.sh
 <!-- OTG:APK:END -->
 
 <!-- OTG:REAL:START -->
-## 🔌 Panel Android real · Conectar / Desconectar · v0.4.0
+## 🔌 Panel Android real · Conectar / Desconectar · v0.5.0
 
 **Sin modo sandbox ni simulador.** Este código consulta Android y trabaja únicamente con carpetas y archivos reales que autorice cada usuario.
 
@@ -60,6 +60,16 @@ Estas dos imágenes son **mockups de diseño**, no capturas de una ejecución re
 
 ⚠️ La app **no activa físicamente USB-PD, OTG ni compatibilidad inexistente**. La carga simultánea y los datos dependen del hardware, el hub y el teléfono. En Android 11+ algunas carpetas raíz no se pueden seleccionar; utiliza una subcarpeta autorizable.
 <!-- OTG:REAL:END -->
+
+## 📊 Panel de telemetría real V0.5.0
+
+El panel distingue **batería del teléfono** (porcentaje real comunicado por Android), **power bank** (porcentaje no disponible cuando no existe protocolo de telemetría), **dispositivos USB** (fabricante/producto/VID/PID si Android los expone), **volumen de almacenamiento** (etiqueta, capacidad total, libre y usado cuando sea medible) y **progreso de transferencia** (nombre del archivo, bytes, porcentaje cuando el tamaño existe, SHA-256 final).
+
+**No inventa capacidades:** una memoria USB-C o USB-A puede aparecer como volumen SAF sin identificarse por fabricante; un microSD también puede figurar como extraíble. Si el almacenamiento o el power bank no reportan alguna métrica se indicará **No disponible** en lugar de presentar un valor simulado. El tipo de conector físico no puede inferirse por una API universal.
+
+El botón **Conectar** permite seleccionar una carpeta mediante Android. El botón **Desconectar** termina la sesión de acceso de la app, no desconecta físicamente el hub. Para transferir, autoriza escritura y utiliza una copia de prueba. Los archivos originales se conservan durante la copia; el éxito se informa solo tras comparar SHA-256.
+
+**Versión:** código candidato `0.5.0` pendiente de recompilación CI y prueba en teléfonos reales; no es todavía una versión pública final. Consultar [documentación técnica de telemetría](docs/TELEMETRIA_REAL_V0_5_0.md).
 
 ## 📢 Comparte el repositorio en WhatsApp y Facebook
 

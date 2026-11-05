@@ -12,8 +12,8 @@ android {
         applicationId = "bo.genai.usbpowerbridge"
         minSdk = 26
         targetSdk = 35
-        versionCode = 5
-        versionName = "0.4.0-real-candidate"
+        versionCode = 6
+        versionName = "0.5.0-real-candidate"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
