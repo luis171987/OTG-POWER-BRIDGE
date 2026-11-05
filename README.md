@@ -9,7 +9,7 @@
 **Aplicación Android creada por GENAI INDUSTRIES**  
 **Creador y director:** Luis Carlos Moreno Jiménez — Santa Cruz de la Sierra, Bolivia.
 
-**Estado:** prototipo Android `v0.3.1-preview` · código fuente disponible · **APK público todavía no publicado**
+**Estado:** código fuente `v0.4.0-real-candidate` · interfaz sin simulador · **APK público de lanzamiento todavía no publicado**
 
 </div>
 
@@ -42,6 +42,24 @@ Tras publicar el APK, vuelve a ejecutar el script `PUBLICAR_README_APK_TERMUX.sh
 
 **[📖 Ver tutorial ilustrado de conexión y transferencia](#-tutorial-de-conexión-física)** · **[🧩 Consultar código fuente](https://github.com/luis171987/OTG-POWER-BRIDGE)**
 <!-- OTG:APK:END -->
+
+<!-- OTG:REAL:START -->
+## 🔌 Panel Android real · Conectar / Desconectar · v0.4.0
+
+**Sin modo sandbox ni simulador.** Este código consulta Android y trabaja únicamente con carpetas y archivos reales que autorice cada usuario.
+
+![Propuesta visual aprobada: pantalla de conexión sin sesión abierta](assets/05_diseno_desconectado_aprobado.png)
+
+**Conectar** abre el selector de carpetas de Android y activa una sesión de acceso real cuando la carpeta está disponible. **Desconectar** termina el acceso de la aplicación; no desconecta físicamente el hardware. Los indicadores de **batería, carga, USB / OTG, carpeta y volumen extraíble** muestran observaciones del dispositivo, no valores inventados.
+
+![Propuesta visual aprobada: panel conectado y acceso a archivos](assets/06_diseno_conectado_aprobado.png)
+
+Estas dos imágenes son **mockups de diseño**, no capturas de una ejecución real. La app no confirma "hub conectado" únicamente porque se abra una carpeta interna: indica por separado los dispositivos observables, el origen del almacenamiento y la alimentación.
+
+**Transferencia efectiva:** seleccionar una carpeta USB/SD a través de Android → autorizar escritura → seleccionar un archivo origen → copiar con verificación SHA-256 sin borrar el original. Ver [protocolo de prueba real](docs/MODO_REAL_ANDROID.md).
+
+⚠️ La app **no activa físicamente USB-PD, OTG ni compatibilidad inexistente**. La carga simultánea y los datos dependen del hardware, el hub y el teléfono. En Android 11+ algunas carpetas raíz no se pueden seleccionar; utiliza una subcarpeta autorizable.
+<!-- OTG:REAL:END -->
 
 ## 📢 Comparte el repositorio en WhatsApp y Facebook
 
@@ -91,13 +109,13 @@ La app **no puede crear una ruta USB de datos por software** ni hacer compatible
 
 ![Pantallas conceptuales OTG POWER BRIDGE: diagnóstico de carga, USB, permisos del sistema y explorador de archivos](assets/03_tutorial_aplicacion_3d.png)
 
-**1. Consultar energía:** abre OTG POWER BRIDGE, cambia del modo de simulación al modo real y comprueba el estado de batería que informa Android. La app **no mide directamente voltios, amperios, potencia PD ni capacidad del power bank**. Los valores eléctricos ilustrados en los renders son solo ejemplos visuales.
+**1. Consultar energía:** abre OTG POWER BRIDGE y comprueba el estado de batería que informa Android. La app **no mide directamente voltios, amperios, potencia PD ni capacidad del power bank**. Los valores eléctricos ilustrados en los renders son solo ejemplos visuales.
 
 **2. Comprobar memoria:** pulsa **Actualizar diagnóstico USB**. La enumeración USB puede ser incompleta; la prueba definitiva de accesibilidad de archivos es que Android ofrezca la unidad en el selector de documentos.
 
-**3. Autorizar carpeta:** selecciona **Autorizar carpeta de la memoria USB** y elige una carpeta del pendrive desde el selector de Android. Si el dispositivo no aparece, no atribuyas el fallo a la app sin revisar el hub, la alimentación y el formato del almacenamiento.
+**3. Autorizar carpeta:** pulsa **Conectar** y elige una carpeta del pendrive desde el selector de Android. Si el dispositivo no aparece, no atribuyas el fallo a la app sin revisar el hub, la alimentación y el formato del almacenamiento.
 
-**4. Transferir un archivo del teléfono:** en modo real, habilita los cambios de archivos; pulsa **Copiar archivo del teléfono a la carpeta autorizada (SHA-256)**, selecciona el PDF, documento o fotografía mediante el selector de Android y espera la confirmación de la copia. El original permanece intacto y el contenido transferido se compara mediante **SHA-256**, según lo implementado en el código. **Esta función aún requiere compilación y pruebas en un teléfono real.**
+**4. Transferir un archivo del teléfono:** habilita los cambios de archivos; pulsa **Copiar archivo a carpeta · SHA-256**, selecciona el PDF, documento o fotografía mediante el selector de Android y espera la confirmación de la copia. El original permanece intacto y el contenido transferido se compara mediante **SHA-256**, según lo implementado en el código. **El código 0.4.0 debe compilarse y validarse con archivos de prueba en un teléfono real.**
 
 **5. Expulsión:** al terminar, comprueba que la operación terminó antes de retirar el pendrive. Utiliza la opción de expulsión del sistema Android si está disponible. Desconectar la memoria durante una escritura puede corromper archivos.
 

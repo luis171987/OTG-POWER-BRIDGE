@@ -1,11 +1,8 @@
-# Estado y límites — OTG POWER BRIDGE
+# Estado v0.4.0 — Modo real
 
-- Fuente: prototipo Kotlin/Compose v0.3.0-preview, **sin APK comprobado**.
-- Logo: versión oficial aportada y aprobada por el autor.
-- Interfaz: implementación inicial funcional pendiente de compilación, no idéntica a las escenas publicitarias 3D.
-- Transferencia: se incorporó selección de documento origen SAF y copia con SHA-256 a carpeta autorizada; pendiente de prueba real en Android.
-- Universalidad: por **detección dinámica de capacidades**, no por garantía de funcionamiento en cualquier teléfono.
-- Sin pruebas físicas de OTG + carga simultánea; las imágenes no prueban conexiones.
-- SIN el dispositivo SUNSHINE SS-905D. Se utiliza como referencia un hub genérico con USB-C PD passthrough y puertos USB de datos independientes.
-- No se incluyen fotografías privadas ni logs del dispositivo ni claves de firma.
-- Publicación GitHub: paquete preparado; no se ha efectuado push ni existe una Release verificada desde este entorno.
+- **Eliminado el simulador de la aplicación** y los escenarios simulados del repositorio. UI con botones Conectar/Desconectar y estados reales consultados a Android.
+- Integradas lectura de batería, enumeración de USB Host y selección SAF de una carpeta, así como copia con SHA-256, edición de texto como nueva copia, renombrado y eliminación con respaldo previo, sujetas a permisos.
+- **Conectar** inicia una sesión autorizada en la app, NO establece eléctricamente USB-PD ni cambia de modo host. **Desconectar** cierra la sesión sin expulsar físicamente el volumen.
+- No se valida automáticamente el origen exacto del power bank; dispositivos extraíbles pueden ser pendrives USB o tarjetas SD.
+- Compatibilidad carga + OTG con cada teléfono/hub: **pendiente de prueba física**.
+- Compilación de esta versión, instalación en dispositivo y APK release firmado: **pendientes de verificación en CI y Android real**.

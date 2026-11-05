@@ -1,13 +1,11 @@
-# Compilación local — OTG POWER BRIDGE
+# Compilar OTG POWER BRIDGE 0.4.0 — modo real
 
-Versión del código: **v0.3.0-preview**. Android 8.0+ (API 26), compileSdk/targetSdk 35. AGP 8.7.3, Kotlin 2.0.21, Java 17, Gradle 8.9.
+El código contiene la interfaz Kotlin/Compose **sin simulador**. El APK no se incorpora al ZIP: debe compilarse y comprobarse con Android SDK 35, Java 17 y Gradle 8.9 en CI o entorno Android preparado.
 
-## Desde Termux
+GitHub Actions: `.github/workflows/android-debug.yml` usa `android-actions/setup-android@v4` y `:app:assembleDebug`. El artefacto resultante es **debug/candidato**, no lanzamiento público estable.
 
-1. Descomprime el ZIP en una carpeta de usuario con suficiente espacio libre.
-2. Verifica que `java`, `python`, `sha256sum`, SDK Android API 35 y `gradle` o wrapper estén disponibles.
-3. Ejecuta `bash scripts/build_termux.sh` desde la carpeta raíz.
-4. Lee únicamente el resumen en pantalla; los errores quedan en `build_logs/`.
-5. **No instales** si no existe `app/build/outputs/apk/debug/app-debug.apk` y no se ha verificado la firma.
+Alternativa: `bash scripts/build_termux.sh` desde la carpeta del proyecto. Este comando verifica el entorno y utiliza las dependencias instaladas; no instala nada por su cuenta.
 
-No se generan ni publican APK Release firmados desde este paquete. Los cambios de visuales o README no sustituyen una prueba de hardware. Ninguna herramienta publica en GitHub de forma automática.
+La edición aprobada cambia la app sin cambiar su `applicationId` (`bo.genai.usbpowerbridge`), incrementando versionCode 5. Los APK debug generados en distintos servidores pueden utilizar distintas claves de firma y **no siempre permiten actualizar una instalación anterior**. Antes de desinstalar, conserva cualquier archivo importante y anota que se perderán las autorizaciones SAF de la aplicación. No desinstales por defecto sin comprobar la firma.
+
+Para publicar código del repositorio de manera independiente: `bash scripts/PUBLICAR_MODO_REAL_TERMUX.sh --publicar`, ejecutado sobre el ZIP completo de este paquete tras autenticarse con GitHub CLI como `luis171987`.

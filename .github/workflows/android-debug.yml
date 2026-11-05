@@ -28,6 +28,8 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
+      - name: Verificar modo real sin motor de simulación
+        run: python3 scripts/validar_modo_real.py
       - name: Compilar APK debug (NO release pública)
         run: gradle --no-daemon --console=plain :app:assembleDebug
       - name: Verificar APK debug
