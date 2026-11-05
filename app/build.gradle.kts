@@ -13,7 +13,7 @@ android {
         minSdk = 26
         targetSdk = 35
         versionCode = 10
-        versionName = "0.6.3-cyber-cockpit-precision-candidate"
+        versionName = "0.6.3"
     }
     // El APK debug se instala junto a V0.6.0 sin exigir desinstalación ni cambiar sus datos.
     buildTypes {
