@@ -13,6 +13,21 @@ object SafeDocumentOps {
     private const val MAX_TEXT_BYTES = 256 * 1024
     private val textExt = setOf("txt", "md", "csv", "log", "json", "xml", "yaml", "yml", "ini", "kt", "py", "html")
 
+    /** Hash real calculado con lectura por bloques; no edita ni genera archivos. */
+    fun checksum(resolver: ContentResolver, file: DocumentFile): String {
+        require(file.isFile) { "Selecciona un archivo real." }
+        val digest = MessageDigest.getInstance("SHA-256")
+        resolver.openInputStream(file.uri)?.use { input ->
+            val buffer = ByteArray(64 * 1024)
+            while (true) {
+                val size = input.read(buffer)
+                if (size < 0) break
+                if (size > 0) digest.update(buffer, 0, size)
+            }
+        } ?: throw IOException("No fue posible abrir el archivo")
+        return digest.digest().joinToString("") { "%02x".format(it.toInt() and 0xff) }
+    }
+
     fun isEditableText(file: DocumentFile): Boolean =
         file.isFile && file.name.orEmpty().substringAfterLast('.', "").lowercase() in textExt
 

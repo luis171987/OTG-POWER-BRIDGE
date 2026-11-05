@@ -9,7 +9,7 @@
 **Aplicación Android creada por GENAI INDUSTRIES**  
 **Creador y director:** Luis Carlos Moreno Jiménez — Santa Cruz de la Sierra, Bolivia.
 
-**Estado:** código fuente `v0.5.0-real-candidate` · interfaz sin simulador · **APK público de lanzamiento todavía no publicado**
+**Estado:** Cyber Cockpit V0.6.0 publicado como código fuente; APK V0.6.0 pendiente de compilación y validación.
 
 </div>
 
@@ -26,6 +26,49 @@ Fuente: [`beed51f0e0c329aa973259cd4ed5b19c0ebc818c`](https://github.com/luis1719
 
 Consulta el [índice de versiones y previews](docs/versiones/README.md), la [ficha de esta preview](docs/versiones/preview/2026-11-05_beed51f0e0c3/README.md) y su [manifiesto de archivos](docs/versiones/preview/2026-11-05_beed51f0e0c3/archivos.json). La compilación no satisface la [puerta de validación física](docs/MODO_REAL_ANDROID.md#compatibilidad-y-límites-físicos).
 <!-- repo-monitor:end -->
+
+<!-- OTG:CYBER_COCKPIT_V06:START -->
+## 🚀 Cyber Cockpit V0.6.0
+
+**Estado:** APK V0.6.0 todavía no compilado ni publicado; pendiente de GitHub Actions y pruebas físicas.
+ — Cinco pantallas aprobadas
+
+La nueva versión de **OTG POWER BRIDGE** reorganiza la interfaz Android en **cinco pantallas realmente navegables**, conservando el logotipo 3D oficial y un estilo oscuro metalizado, cian y naranja. El encabezado panorámico se adapta de la imagen oficial; las tarjetas y botones son elementos **Jetpack Compose funcionales**, no fotografías con áreas táctiles ficticias.
+
+**Las siguientes imágenes son conceptos de diseño aprobados**, no capturas de la V0.6.0 instalada. Los porcentajes, vatios, marcas, capacidades, transferencias y registros que aparezcan dibujados en ellas son **ejemplos ilustrativos**, nunca resultados de mediciones. La aplicación muestra valores reales cuando Android los proporciona, y «No disponible» en caso contrario.
+
+### 1. Tablero · Cyber Cockpit
+
+![Pantalla aprobada: dashboard Cyber Cockpit con conexiones holográficas y botón Conectar](assets/ui_aprobada/00_tablero_cyber_cockpit_aprobado.jpg)
+
+**Al tocar Tablero:** muestra el estado real de batería y alimentación, señales USB/OTG accesibles, conexión a carpeta SAF, estado de transferencia y acceso rápido al diagnóstico. **Conectar** solicita elegir una carpeta en Android. **Desconectar** cierra la sesión de la aplicación, sin cortar físicamente la corriente.
+
+### 2. Transferir · Gestor de copias
+
+![Pantalla aprobada: gestor futurista de transferencia](assets/ui_aprobada/01_transferencias.jpg)
+
+**Al tocar Transferir:** se elige una carpeta de destino, se autoriza escritura y se selecciona un archivo origen. El motor copia **datos reales**, muestra bytes y porcentaje cuando el tamaño es conocido y comprueba **SHA-256** al finalizar. La pausa y las colas de varios archivos dibujadas en el concepto **todavía no están implementadas**; se opera un archivo a la vez.
+
+### 3. Memoria · Explorador
+
+![Pantalla aprobada: capacidad y explorador de almacenamiento](assets/ui_aprobada/02_almacenamiento.jpg)
+
+**Al tocar Memoria:** muestra capacidad de la partición de datos del teléfono, y volumen externo si Android permite medirlo. Permite explorar carpetas autorizadas, editar textos creando una copia nueva, duplicar con hash, renombrar y eliminar **solo después de respaldo y confirmación**. Un volumen extraíble puede ser USB o microSD.
+
+### 4. Herramientas · Diagnóstico
+
+![Pantalla aprobada: herramientas de diagnóstico USB](assets/ui_aprobada/03_herramientas.jpg)
+
+**Al tocar Herramientas:** consulta la batería, USB host, dispositivos visibles y permisos de la carpeta seleccionada; permite recalcular diagnósticos y obtener el SHA-256 de un archivo real. No afirma medir watts, hacer expulsión física por software ni ejecutar pruebas eléctricas sin instrumentación compatible.
+
+### 5. Ajustes · Configuración
+
+![Pantalla aprobada: configuración cyber futurista](assets/ui_aprobada/04_ajustes.jpg)
+
+**Al tocar Ajustes:** cambia los efectos de flujo, el espaciado y la visualización de identificadores técnicos. Estos ajustes se guardan en las preferencias privadas de la aplicación. La verificación de copias no puede desactivarse accidentalmente.
+
+📘 **[Mapa funcional, límites físicos y pruebas pendientes](docs/FRONTEND_CYBER_COCKPIT_V06.md)**
+<!-- OTG:CYBER_COCKPIT_V06:END -->
 
 <!-- OTG:APK:START -->
 ## 📲 Descargar e instalar OTG POWER BRIDGE en Android
@@ -55,6 +98,9 @@ Tras publicar el APK, vuelve a ejecutar el script `PUBLICAR_README_APK_TERMUX.sh
 > ⚠️ **Importante:** la app no convierte un power bank en un hub USB. Que el teléfono pueda cargar y usar memoria OTG al mismo tiempo depende de sus características eléctricas, del hub y de la negociación USB. Android 8+ es el mínimo de proyecto, no una garantía de compatibilidad universal.
 
 **[📖 Ver tutorial ilustrado de conexión y transferencia](#-tutorial-de-conexión-física)** · **[🧩 Consultar código fuente](https://github.com/luis171987/OTG-POWER-BRIDGE)**
+
+> 📥 **Última versión publicada:** [ver descargas oficiales](https://github.com/luis171987/OTG-POWER-BRIDGE/releases). Cuando exista una release con un instalador llamado `OTG-POWER-BRIDGE.apk`, el [enlace directo permanente](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/latest/download/OTG-POWER-BRIDGE.apk) apuntará a la última versión. **El APK V0.6.0 todavía no está publicado.**
+
 <!-- OTG:APK:END -->
 
 <!-- OTG:REAL:START -->
@@ -62,13 +108,9 @@ Tras publicar el APK, vuelve a ejecutar el script `PUBLICAR_README_APK_TERMUX.sh
 
 **Sin modo sandbox ni simulador.** Este código consulta Android y trabaja únicamente con carpetas y archivos reales que autorice cada usuario.
 
-![Propuesta visual aprobada: pantalla de conexión sin sesión abierta](assets/05_diseno_desconectado_aprobado.png)
-
 **Conectar** abre el selector de carpetas de Android y activa una sesión de acceso real cuando la carpeta está disponible. **Desconectar** termina el acceso de la aplicación; no desconecta físicamente el hardware. Los indicadores de **batería, carga, USB / OTG, carpeta y volumen extraíble** muestran observaciones del dispositivo, no valores inventados.
 
-![Propuesta visual aprobada: panel conectado y acceso a archivos](assets/06_diseno_conectado_aprobado.png)
-
-Estas dos imágenes son **mockups de diseño**, no capturas de una ejecución real. La app no confirma "hub conectado" únicamente porque se abra una carpeta interna: indica por separado los dispositivos observables, el origen del almacenamiento y la alimentación.
+Las imágenes anteriores V0.4/V0.5 se retiraron del README y fueron sustituidas por las cinco pantallas de Cyber Cockpit V0.6.0; los renders de V0.6 son **propuestas de diseño**, no capturas de una ejecución real. La app no confirma "hub conectado" únicamente porque se abra una carpeta interna: indica por separado los dispositivos observables, el origen del almacenamiento y la alimentación.
 
 **Transferencia efectiva:** seleccionar una carpeta USB/SD a través de Android → autorizar escritura → seleccionar un archivo origen → copiar con verificación SHA-256 sin borrar el original. Ver [protocolo de prueba real](docs/MODO_REAL_ANDROID.md).
 
@@ -131,7 +173,7 @@ La app **no puede crear una ruta USB de datos por software** ni hacer compatible
 
 ### Imagen 3 — Detectar, autorizar y transferir
 
-![Pantallas conceptuales OTG POWER BRIDGE: diagnóstico de carga, USB, permisos del sistema y explorador de archivos](assets/03_tutorial_aplicacion_3d.png)
+![Pantallas conceptuales OTG POWER BRIDGE: diagnóstico de carga, USB, permisos del sistema y explorador de archivos](assets/ui_aprobada/01_transferencias.jpg)
 
 **1. Consultar energía:** abre OTG POWER BRIDGE y comprueba el estado de batería que informa Android. La app **no mide directamente voltios, amperios, potencia PD ni capacidad del power bank**. Los valores eléctricos ilustrados en los renders son solo ejemplos visuales.
 
@@ -147,7 +189,7 @@ La app **no puede crear una ruta USB de datos por software** ni hacer compatible
 
 ### Imagen 4 — Panel principal del producto
 
-![Diseño 3D conceptual de OTG POWER BRIDGE en teléfono Redmi: batería, USB, almacenamiento, explorador, diagnóstico, respaldo, sincronización y seguridad](assets/04_panel_android_3d.png)
+![Diseño 3D conceptual de OTG POWER BRIDGE en teléfono Redmi: batería, USB, almacenamiento, explorador, diagnóstico, respaldo, sincronización y seguridad](assets/ui_aprobada/00_tablero_cyber_cockpit_aprobado.jpg)
 
 *Diseño visual del frontend; no es una captura de una aplicación instalada. La interfaz implementada en el prototipo es más sencilla. Los módulos ilustrados que todavía no existen no deben interpretarse como funciones terminadas.*
 
