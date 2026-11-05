@@ -79,7 +79,7 @@ import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.max
 
-/** Capa nativa V0.6.2. Arte ornamental aprobado; métricas solo de API Android y SAF. */
+/** Capa nativa V0.6.3. Visuales optimizados; métricas solo de API Android y SAF. */
 internal data class DeviceSpace(val total: Long?, val available: Long?) {
     companion object {
         fun read(context: Context): DeviceSpace = runCatching {
@@ -189,7 +189,7 @@ internal fun BridgeInterface(data: BridgeUiData, actions: BridgeActions) {
                                 )
                             }
                             Text(
-                                "GENAI INDUSTRIES  •  CYBER COCKPIT V0.6.2  •  DATOS DE ANDROID",
+                                "GENAI INDUSTRIES  •  CYBER COCKPIT V0.6.3  •  DATOS REALES",
                                 Modifier.fillMaxWidth().padding(vertical = 12.dp),
                                 color = TextSub, textAlign = TextAlign.Center, fontSize = 9.sp,
                                 letterSpacing = .6.sp
@@ -232,7 +232,7 @@ private fun BrandHero(data: BridgeUiData) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text("◈ CYBER COCKPIT V0.6.2", color = Cyan, fontSize = 10.sp,
+            Text("◈ CYBER COCKPIT V0.6.3", color = Cyan, fontSize = 10.sp,
                 letterSpacing = .5.sp, fontWeight = FontWeight.Black)
             Text("● ${if (data.power.charging) "CARGANDO" else "ENERGÍA: ${data.power.source}"}",
                 color = if (data.power.charging) Lime else Amber, fontSize = 9.sp,
@@ -321,8 +321,8 @@ private fun NeonPanel(
                     Brush.verticalGradient(listOf(Color.White, accent, Blue))))
                 Spacer(Modifier.width(8.dp))
                 Text(title.uppercase(Locale.ROOT), Modifier.weight(1f), color = TextHi,
-                    fontSize = 12.sp, fontWeight = FontWeight.Black, letterSpacing = .55.sp,
-                    lineHeight = 15.sp, maxLines = 2)
+                    fontSize = 13.sp, fontWeight = FontWeight.Black, letterSpacing = .35.sp,
+                    lineHeight = 17.sp, maxLines = 3)
                 Text("◀  ◈  ▶", color = accent.copy(alpha = .8f), fontSize = 9.sp)
             }
             content()
@@ -378,18 +378,24 @@ private fun LivePill(label: String, good: Boolean?, detail: String = "") {
 @Composable
 private fun Metric(label: String, value: String, color: Color = TextHi) {
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.Top) {
-        Text(label, modifier = Modifier.weight(1f), color = TextSub, fontSize = 11.sp)
-        Text(value, modifier = Modifier.weight(1.1f), color = color,
-            textAlign = TextAlign.End, fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
+        Text(label, modifier = Modifier.weight(1f), color = TextSub,
+            fontSize = 12.sp, lineHeight = 16.sp)
+        Text(value, modifier = Modifier.weight(1.05f), color = color,
+            textAlign = TextAlign.End, fontSize = 12.sp,
+            lineHeight = 16.sp, fontWeight = FontWeight.SemiBold)
     }
 }
 
 @Composable
-private fun CircleGauge(percent: Int, title: String, accent: Color = Lime, modifier: Modifier = Modifier) {
+private fun CircleGauge(
+    percent: Int, title: String, accent: Color = Lime,
+    modifier: Modifier = Modifier.size(132.dp), compact: Boolean = false
+) {
     val safe = percent.coerceIn(0, 100)
     val fill by animateFloatAsState(targetValue = if (percent < 0) 0f else safe / 100f,
         animationSpec = tween(620), label = "indicador_bateria_real")
-    Box(modifier.size(132.dp), contentAlignment = Alignment.Center) {
+    // Respect the size specified by the parent. Fixed 132 dp overflowed narrow instrument cards.
+    Box(modifier, contentAlignment = Alignment.Center) {
         Canvas(Modifier.fillMaxSize()) {
             val cx = size.width / 2f
             val cy = size.height / 2f
@@ -418,11 +424,15 @@ private fun CircleGauge(percent: Int, title: String, accent: Color = Lime, modif
                 style = Stroke(1.dp.toPx()))
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(title, color = TextSub, fontSize = 9.sp, fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center, letterSpacing = .7.sp)
+            Text(title, color = TextSub, fontSize = if (compact) 7.sp else 9.sp,
+                fontWeight = FontWeight.Bold, textAlign = TextAlign.Center,
+                letterSpacing = if (compact) 0.sp else .6.sp,
+                maxLines = 1)
             Text(if (percent < 0) "—" else "$percent%", color = accent,
-                fontSize = 29.sp, fontWeight = FontWeight.Black)
-            Text("ANDROID", color = Titanium, fontSize = 8.sp, letterSpacing = 1.sp)
+                fontSize = if (compact) 21.sp else 29.sp,
+                fontWeight = FontWeight.Black, maxLines = 1)
+            if (!compact) Text("ANDROID", color = Titanium,
+                fontSize = 8.sp, letterSpacing = 1.sp)
         }
     }
 }
@@ -435,65 +445,99 @@ private fun LiveDiagram(data: BridgeUiData, animated: Boolean) {
         animationSpec = infiniteRepeatable(tween(1700), RepeatMode.Restart),
         label = "flujo_visual_estado_real"
     )
-    val dataActive = data.usb.devices.isNotEmpty() || data.removable
-    val powerActive = data.power.externalPower
-    Box(Modifier.fillMaxWidth().height(152.dp)) {
-        Canvas(Modifier.matchParentSize()) {
-            val center = Offset(size.width / 2f, size.height * .47f)
-            val r = size.height * .33f
-            for (i in 0..3) {
-                drawCircle(if (i % 2 == 0) Cyan.copy(alpha = .30f) else Blue.copy(alpha = .35f),
-                    radius = r + i * 7.dp.toPx(), center = center, style = Stroke(1.dp.toPx()))
+    val usbObserved = data.usb.devices.isNotEmpty() || data.removable
+    // Android reports external power to the PHONE; it does NOT prove the supply crosses the hub.
+    val phonePoweredExternally = data.power.externalPower
+    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Box(Modifier.fillMaxWidth().height(132.dp)) {
+            Canvas(Modifier.matchParentSize()) {
+                val center = Offset(size.width / 2f, size.height * .46f)
+                val radius = size.height * .34f
+                for (i in 0..3) {
+                    drawCircle(
+                        if (i % 2 == 0) Cyan.copy(alpha = .24f) else Blue.copy(alpha = .25f),
+                        radius = radius + i * 7.dp.toPx(), center = center,
+                        style = Stroke(1.dp.toPx())
+                    )
+                }
+                val y = size.height * .43f
+                val first = size.width * .17f
+                val middle = size.width * .5f
+                val last = size.width * .83f
+                drawLine(if (usbObserved) Cyan else Color(0xFF375069),
+                    Offset(first, y), Offset(middle, y),
+                    strokeWidth = 3.dp.toPx(), cap = StrokeCap.Round)
+                drawLine(if (data.simultaneous) Amber else Color(0xFF375069),
+                    Offset(middle, y), Offset(last, y),
+                    strokeWidth = 3.dp.toPx(), cap = StrokeCap.Round)
+                if (animated && usbObserved) {
+                    drawCircle(Color.White, 3.dp.toPx(),
+                        Offset(first + (middle - first) * phase, y))
+                }
+                if (animated && data.simultaneous) {
+                    drawCircle(Amber, 3.dp.toPx(),
+                        Offset(last + (middle - last) * phase, y))
+                }
+                val bottom = size.height * .92f
+                drawLine(Brush.horizontalGradient(
+                    listOf(Color.Transparent, Cyan, Amber, Color.Transparent)),
+                    Offset(0f, bottom), Offset(size.width, bottom),
+                    strokeWidth = 1.5.dp.toPx())
             }
-            val y = size.height * .50f
-            val start = size.width * .19f
-            val middle = size.width * .50f
-            val end = size.width * .81f
-            drawLine(if (dataActive) Cyan else Color(0xFF375069), Offset(start, y), Offset(middle, y),
-                strokeWidth = 3.dp.toPx(), cap = StrokeCap.Round)
-            drawLine(if (powerActive) Amber else Color(0xFF375069), Offset(middle, y), Offset(end, y),
-                strokeWidth = 3.dp.toPx(), cap = StrokeCap.Round)
-            if (animated && dataActive) {
-                drawCircle(Color.White, 3.5.dp.toPx(), Offset(start + (middle-start)*phase, y))
+            Row(
+                Modifier.fillMaxWidth().align(Alignment.Center),
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                CyberNode("▣", "ANDROID",
+                    if (data.session) "CARPETA SAF" else "SIN SESIÓN",
+                    data.session, Cyan, Modifier.weight(1f))
+                CyberNode("⌁", "USB / OTG",
+                    "${data.usb.devices.size} EQUIPOS",
+                    usbObserved, Amber, Modifier.weight(1f))
+                CyberNode("ϟ", "ALIMENTACIÓN",
+                    if (phonePoweredExternally) "EXTERNA" else "NO DETECTADA",
+                    phonePoweredExternally, Lime, Modifier.weight(1f))
             }
-            if (animated && powerActive) {
-                drawCircle(Amber, 3.5.dp.toPx(), Offset(end + (middle-end)*phase, y))
-            }
-            val yy = size.height*.92f
-            drawLine(brush = Brush.horizontalGradient(listOf(Color.Transparent, Cyan, Amber, Color.Transparent)),
-                start = Offset(0f, yy), end = Offset(size.width, yy), strokeWidth = 1.5.dp.toPx())
         }
-        Row(
-            Modifier.fillMaxWidth().align(Alignment.Center).padding(top = 2.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            CyberNode("▣", "ANDROID", if (data.session) "SAF ACTIVO" else "SIN SESIÓN", data.session, Cyan)
-            CyberNode("⌁", "OTG / HUB", "${data.usb.devices.size} USB", dataActive, Amber)
-            CyberNode("ϟ", "ENERGÍA", if (powerActive) "DETECTADA" else "SIN FUENTE", powerActive, Lime)
-        }
-        Text("Diagrama de conexión ilustrativo; NO mide tráfico USB. Hub y fuente pueden no identificarse.",
-            Modifier.align(Alignment.BottomCenter).padding(bottom = 0.dp),
-            color = TextSub, fontSize = 9.sp, textAlign = TextAlign.Center)
+        Text(
+            "ESQUEMA ILUSTRATIVO · Estado leído de Android; no confirma el recorrido " +
+                "físico por el hub ni mide la potencia USB-PD.",
+            modifier = Modifier.fillMaxWidth()
+                .clip(RoundedCornerShape(6.dp))
+                .background(Color(0xE0041526))
+                .padding(horizontal = 9.dp, vertical = 8.dp),
+            color = TextSub, fontSize = 11.sp,
+            lineHeight = 14.sp, textAlign = TextAlign.Center
+        )
     }
 }
 
 @Composable
-private fun CyberNode(glyph: String, title: String, subtitle: String, active: Boolean, accent: Color) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.width(98.dp)) {
+private fun CyberNode(
+    glyph: String, title: String, subtitle: String,
+    active: Boolean, accent: Color, modifier: Modifier = Modifier
+) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier) {
         Box(
-            modifier = Modifier.size(62.dp).clip(RoundedCornerShape(12.dp))
-                .background(Brush.radialGradient(listOf(accent.copy(alpha = if (active) .5f else .10f), Color(0xFF041123))))
-                .border(1.3.dp, if (active) accent else Titanium.copy(alpha = .42f), RoundedCornerShape(12.dp)),
+            modifier = Modifier.size(60.dp).clip(RoundedCornerShape(12.dp))
+                .background(Brush.radialGradient(
+                    listOf(accent.copy(alpha = if (active) .5f else .10f), Color(0xFF041123))))
+                .border(1.3.dp,
+                    if (active) accent else Titanium.copy(alpha = .42f),
+                    RoundedCornerShape(12.dp)),
             contentAlignment = Alignment.Center
         ) {
-            Text(glyph, color = if (active) accent else TextSub, fontSize = 30.sp,
-                fontWeight = FontWeight.ExtraBold)
+            Text(glyph, color = if (active) accent else TextSub,
+                fontSize = 29.sp, fontWeight = FontWeight.ExtraBold)
         }
-        Spacer(Modifier.height(4.dp))
-        Text(title, color = TextHi, fontSize = 9.sp, fontWeight = FontWeight.Black, maxLines = 1)
+        Spacer(Modifier.height(6.dp))
+        Text(title, color = TextHi, fontSize = 10.sp,
+            fontWeight = FontWeight.Black, maxLines = 2,
+            lineHeight = 12.sp, textAlign = TextAlign.Center)
         Text(subtitle, color = if (active) accent else TextSub,
-            fontSize = 8.sp, textAlign = TextAlign.Center, maxLines = 1)
+            fontSize = 9.sp, lineHeight = 12.sp,
+            textAlign = TextAlign.Center, maxLines = 2)
     }
 }
 
@@ -501,6 +545,7 @@ private fun CyberNode(glyph: String, title: String, subtitle: String, active: Bo
 private fun InstrumentCell(
     label: String, percent: Int?, primaryValue: String, secondary: String,
     accent: Color, modifier: Modifier = Modifier,
+    gaugeTitle: String = label,
     body: @Composable (() -> Unit)? = null
 ) {
     Box(modifier.background(Brush.verticalGradient(
@@ -512,12 +557,13 @@ private fun InstrumentCell(
             Text(label, color = TextHi, fontSize = 9.sp, maxLines = 2,
                 lineHeight = 11.sp, fontWeight = FontWeight.Black, textAlign = TextAlign.Center)
             if (body != null) body()
-            else CircleGauge(percent ?: -1, label, accent, modifier = Modifier.size(95.dp))
-            Text(primaryValue, color = accent, fontSize = 12.sp,
+            else CircleGauge(percent ?: -1, gaugeTitle, accent,
+                modifier = Modifier.size(81.dp), compact = true)
+            Text(primaryValue, color = accent, fontSize = 11.sp,
                 fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center,
-                lineHeight = 14.sp, maxLines = 2)
-            Text(secondary, color = TextSub, fontSize = 9.sp,
-                textAlign = TextAlign.Center, lineHeight = 11.sp, maxLines = 3)
+                lineHeight = 14.sp, maxLines = 3)
+            Text(secondary, color = TextSub, fontSize = 10.sp,
+                textAlign = TextAlign.Center, lineHeight = 13.sp, maxLines = 4)
         }
     }
 }
@@ -563,11 +609,13 @@ private fun HomePage(data: BridgeUiData, actions: BridgeActions, animations: Boo
                 }
             }
             InstrumentCell("ALMACENAMIENTO", storagePercent,
-                TelemetryFormats.bytes(phone.available), "Libre en datos del teléfono",
-                Cyan, Modifier.weight(1f))
+                if (storagePercent == null) "SIN DATOS" else "$storagePercent% OCUPADO",
+                "${TelemetryFormats.bytes(phone.available)} libres en datos",
+                Cyan, Modifier.weight(1f), gaugeTitle = "OCUPADO")
         }
-        Text("Instrumentos conectados a Android. Sin porcentajes ni potencia ficticios del power bank.",
-            color = TextSub, fontSize = 9.sp)
+        Text("El porcentaje de almacenamiento indica ESPACIO OCUPADO en la partición de datos; " +
+            "no es la capacidad libre. Sin telemetría inventada del power bank.",
+            color = TextSub, fontSize = 11.sp, lineHeight = 14.sp)
     }
     NeonPanel("Diagrama de conexión · Datos y energía", Cyan) {
         LiveDiagram(data, animations)
@@ -737,6 +785,9 @@ private fun CapacityCard(title: String, total: Long?, free: Long?, subtitle: Str
         Metric("Total", TelemetryFormats.bytes(total))
         Metric("Usado", TelemetryFormats.bytes(used))
         Metric("Disponible", TelemetryFormats.bytes(free), Lime)
+        if (fraction != null) Text(
+            "ESPACIO OCUPADO: ${(fraction * 100f).toInt().coerceIn(0, 100)}%",
+            color = Cyan, fontSize = 11.sp, fontWeight = FontWeight.Bold)
         if (fraction != null) LinearProgressIndicator(progress = { fraction.coerceIn(0f, 1f) },
             modifier = Modifier.fillMaxWidth().height(10.dp), color = Cyan, trackColor = SpaceBg)
     }
@@ -847,7 +898,7 @@ private fun ToolsPage(data: BridgeUiData, actions: BridgeActions) {
         Metric("Fuente de energía", data.power.source)
         Metric("Batería", if (data.power.percent >= 0) "${data.power.percent}%" else "No disponible")
         Metric("Carga externa", if (data.power.externalPower) "Detectada" else "No detectada")
-        Metric("Potencia real (W)", "Sin medición USB-PD disponible", Amber)
+        Metric("Potencia real (W)", "No disponible: Android no mide USB-PD", Amber)
         Metric("Carpeta accesible", if (data.session) "Sí" else "No")
         Metric("Extraíble identificado", when(data.evidence.removable) {
             true -> "Sí (USB/SD)"; false -> "No"; null -> "Desconocido" })
@@ -871,7 +922,7 @@ private fun ToolsPage(data: BridgeUiData, actions: BridgeActions) {
     NeonPanel("Registro local de actividad") {
         Text(data.log, color = TextHi, fontSize = 12.sp)
         Text("No se realizan pruebas eléctricas ni mediciones de potencia USB-PD.",
-            color = TextSub, fontSize = 11.sp)
+            color = TextSub, fontSize = 12.sp, lineHeight = 16.sp)
     }
 }
 
@@ -907,7 +958,7 @@ private fun SettingsPage(
     }
     NeonPanel("Acerca del proyecto") {
         Metric("Aplicación", "OTG POWER BRIDGE")
-        Metric("Versión candidata", "0.6.2 Cyber Cockpit · fidelidad visual")
+        Metric("Versión candidata", "0.6.3 Cyber Cockpit · precisión visual")
         Metric("Plataforma", "Android 8+")
         Metric("Creador", "GENAI INDUSTRIES")
         Text("Dirección: Luis Carlos Moreno Jiménez · Santa Cruz de la Sierra, Bolivia.",
@@ -921,8 +972,9 @@ private fun SettingsPage(
 private fun SettingSwitch(label: String, detail: String, checked: Boolean, onChecked: (Boolean) -> Unit) {
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         Column(Modifier.weight(1f)) {
-            Text(label, color = TextHi, fontWeight = FontWeight.SemiBold, fontSize = 12.sp)
-            Text(detail, color = TextSub, fontSize = 10.sp)
+            Text(label, color = TextHi, fontWeight = FontWeight.SemiBold,
+                fontSize = 13.sp, lineHeight = 17.sp)
+            Text(detail, color = TextSub, fontSize = 11.sp, lineHeight = 15.sp)
         }
         Switch(checked = checked, onCheckedChange = onChecked)
     }

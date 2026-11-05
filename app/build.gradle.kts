@@ -12,13 +12,13 @@ android {
         applicationId = "bo.genai.usbpowerbridge"
         minSdk = 26
         targetSdk = 35
-        versionCode = 9
-        versionName = "0.6.2-cyber-cockpit-fidelity-candidate"
+        versionCode = 10
+        versionName = "0.6.3-cyber-cockpit-precision-candidate"
     }
     // El APK debug se instala junto a V0.6.0 sin exigir desinstalación ni cambiar sus datos.
     buildTypes {
         getByName("debug") {
-            applicationIdSuffix = ".previewv062"
+            applicationIdSuffix = ".previewv063"
             versionNameSuffix = ".preview"
         }
     }
