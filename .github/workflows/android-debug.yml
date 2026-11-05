@@ -19,7 +19,9 @@ jobs:
           distribution: temurin
           java-version: '17'
       - name: Instalar Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+        with:
+          packages: platform-tools
       - name: Instalar SDK API 35
         run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - name: Configurar Gradle 8.9
@@ -28,6 +30,11 @@ jobs:
           gradle-version: '8.9'
       - name: Compilar APK debug (NO release pública)
         run: gradle --no-daemon --console=plain :app:assembleDebug
+      - name: Verificar APK debug
+        run: |
+          test -s app/build/outputs/apk/debug/app-debug.apk
+          sha256sum app/build/outputs/apk/debug/app-debug.apk
+          unzip -tq app/build/outputs/apk/debug/app-debug.apk
       - name: Publicar artefacto CI para revisión (no release)
         uses: actions/upload-artifact@v4
         with:
