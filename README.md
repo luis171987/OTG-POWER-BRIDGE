@@ -1,243 +1,129 @@
 <div align="center">
 
-<img src="assets/LOGOTIPO_OTG_POWER_BRIDGE_OFICIAL.jpg" alt="Logotipo oficial 3D de OTG POWER BRIDGE: símbolo USB, energía y archivos, en azul y naranja" width="360" />
+<img src="assets/LOGOTIPO_OTG_POWER_BRIDGE_OFICIAL.jpg" width="180" alt="Logotipo oficial OTG POWER BRIDGE — GENAI INDUSTRIES">
 
-# OTG POWER BRIDGE
+# ⚡ OTG POWER BRIDGE
 
-### Conecta · Alimenta · Transfiere
+### CYBER COCKPIT 3D · ANDROID · VERSIÓN ESTABLE **0.6.3**
 
-**Aplicación Android creada por GENAI INDUSTRIES**  
-**Creador y director:** Luis Carlos Moreno Jiménez — Santa Cruz de la Sierra, Bolivia.
+**Energía · Conectividad USB/OTG · Transferencia de archivos**
 
-**Estado:** v0.6.3 publicada en Releases; archivo verificado estáticamente. La aceptación de interfaz/hardware y las capturas reales siguen pendientes de evidencia en esta revisión.
+**GENAI INDUSTRIES** · Autor: **Luis Carlos Moreno Jiménez** · Santa Cruz de la Sierra, Bolivia 🇧🇴
+
+[![Versión estable](https://img.shields.io/badge/versi%C3%B3n_estable-v0.6.3-0aa7ec?style=for-the-badge)](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/tag/v0.6.3)
+[![Android](https://img.shields.io/badge/Android-8%2B-28a745?style=for-the-badge)](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/latest)
+
+## 📥 [⬇️ DESCARGAR LA ÚLTIMA APK OFICIAL](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/latest/download/OTG-POWER-BRIDGE.apk)
+
+**[📦 Ver versión publicada y notas](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/tag/v0.6.3)** · **[📖 Instalación y uso](#-instalación-en-android)**
 
 </div>
 
-<!-- repo-monitor:start -->
-## v0.6.3 publicada · aceptación incompleta
+> ✅ **VERSIÓN ACTUAL: V0.6.3**. Este README describe únicamente la versión estable publicada. Los prototipos anteriores se conservan en el historial de Git y la documentación técnica, **pero no son la descarga recomendada**.
 
-[Release v0.6.3](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/tag/v0.6.3), publicada el **2026-11-05 UTC**. Tag y fuente exacta: [`6a8ac407169aa0d7cfa4ff1c1dc5df5544542718`](https://github.com/luis171987/OTG-POWER-BRIDGE/commit/6a8ac407169aa0d7cfa4ff1c1dc5df5544542718).
+## 🚀 ¿Qué es OTG POWER BRIDGE?
 
-| Plataforma | Archivo publicado | Requisitos definidos | Verificación |
-| --- | --- | --- | --- |
-| Android | [OTG-POWER-BRIDGE.apk · v0.6.3](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/download/v0.6.3/OTG-POWER-BRIDGE.apk) | Android 8.0+; capacidades del teléfono/hub sujetas a prueba | 7.304.400 bytes, hash y firma v2 comprobados estáticamente; aceptación de uso pendiente |
+Una aplicación **nativa de Android (Kotlin / Jetpack Compose)** para visualizar información real de batería y USB, abrir carpetas autorizadas por Android, gestionar archivos y realizar copias verificadas mediante **SHA-256**. Su interfaz **Cyber Cockpit 3D** distribuye las herramientas en cinco paneles.
 
-- [CI del tag, ejecución 42128808304, intento 1](https://github.com/luis171987/OTG-POWER-BRIDGE/actions/runs/42128808304): **aprobado** para 37+10 condiciones estáticas, `:app:assembleDebug`, `:app:assembleRelease` e integridad ZIP. El CI entrega la variante release **sin firma**; ese artefacto no se ofrece como instalador.
-- El APK de Releases tiene firma v2 criptográficamente válida y los mismos 120 archivos ajenos a la firma que el APK release del [CI de cd8b3773](https://github.com/luis171987/OTG-POWER-BRIDGE/actions/runs/42123871904), cuyo árbol fuente coincide con el tag. Esto acredita la relación estática del archivo con la fuente; no certifica el funcionamiento en Android ni la continuidad de la clave del propietario.
-- **Puertas pendientes de evidencia:** las ocho comprobaciones Kotlin no se ejecutan en el workflow; no hay resultados de interfaz ni capturas reales del SHA publicado. El propietario declara pruebas físicas en la documentación de release; esta revisión no las ejecutó ni dispone de un registro reproducible por versión/dispositivo.
-- **Galería:** las cinco imágenes actuales son conceptos de diseño. No se presentan como capturas de v0.6.3; las tomas reales siguen pendientes.
-- El hash completo, huella del certificado, procedencia, límites y todos los enlaces de archivos están en la [ficha de entrega](docs/versiones/2026-11-05_v0.6.3/README.md) y el [manifiesto](docs/versiones/2026-11-05_v0.6.3/archivos.json). Se conserva el [índice histórico](docs/versiones/README.md), incluida la preview 0.5.0.
+No hace falta root ni Termux para utilizar el APK instalado. **No crea funciones eléctricas inexistentes**: usar una memoria OTG mientras se carga el móvil solo es posible si el **teléfono y el hub USB-C con entrada de alimentación PD** lo permiten.
 
-La publicación en Releases no sustituye la [validación física y funcional documentada](docs/MODO_REAL_ANDROID.md#compatibilidad-y-límites-físicos).
-<!-- repo-monitor:end -->
+## 🔵 Cinco pantallas Cyber Cockpit — Versión 0.6.3
 
-<!-- OTG:CYBER_COCKPIT_V06:START -->
-## 🚀 Cyber Cockpit V0.6.0
+Los cinco diseños siguientes son **referencias gráficas de la interfaz aprobada**. Están enlazados a su imagen original para verlos con más nitidez. La app instalada contiene controles funcionales y datos de Android; los números que se vean en los diseños son ilustrativos, **no telemetría real ni capturas certificadas**.
 
-**Referencia visual:** conceptos de diseño V0.6.0; la entrega publicada es v0.6.3. Consulta arriba el build comprobado y las puertas de aceptación pendientes.
- — Cinco pantallas aprobadas
+### 1. Tablero
 
-La nueva versión de **OTG POWER BRIDGE** reorganiza la interfaz Android en **cinco pantallas realmente navegables**, conservando el logotipo 3D oficial y un estilo oscuro metalizado, cian y naranja. El encabezado panorámico se adapta de la imagen oficial; las tarjetas y botones son elementos **Jetpack Compose funcionales**, no fotografías con áreas táctiles ficticias.
+<a href="assets/ui_aprobada/00_tablero_cyber_cockpit_aprobado.jpg"><img src="assets/ui_aprobada/00_tablero_cyber_cockpit_aprobado.jpg" alt="Referencia visual Cyber Cockpit: Tablero" width="330"></a>
 
-**Las siguientes imágenes son conceptos de diseño aprobados**, no capturas de la V0.6.0 instalada. Los porcentajes, vatios, marcas, capacidades, transferencias y registros que aparezcan dibujados en ellas son **ejemplos ilustrativos**, nunca resultados de mediciones. La aplicación muestra valores reales cuando Android los proporciona, y «No disponible» en caso contrario.
+[🔍 Abrir imagen original a máxima resolución disponible](assets/ui_aprobada/00_tablero_cyber_cockpit_aprobado.jpg)
 
-### 1. Tablero · Cyber Cockpit
+### 2. Transferencias
 
-![Pantalla aprobada: dashboard Cyber Cockpit con conexiones holográficas y botón Conectar](assets/ui_aprobada/00_tablero_cyber_cockpit_aprobado.jpg)
+<a href="assets/ui_aprobada/01_transferencias.jpg"><img src="assets/ui_aprobada/01_transferencias.jpg" alt="Referencia visual Cyber Cockpit: Transferencias" width="330"></a>
 
-**Al tocar Tablero:** muestra el estado real de batería y alimentación, señales USB/OTG accesibles, conexión a carpeta SAF, estado de transferencia y acceso rápido al diagnóstico. **Conectar** solicita elegir una carpeta en Android. **Desconectar** cierra la sesión de la aplicación, sin cortar físicamente la corriente.
+[🔍 Abrir imagen original a máxima resolución disponible](assets/ui_aprobada/01_transferencias.jpg)
 
-### 2. Transferir · Gestor de copias
+### 3. Memoria
 
-![Pantalla aprobada: gestor futurista de transferencia](assets/ui_aprobada/01_transferencias.jpg)
+<a href="assets/ui_aprobada/02_almacenamiento.jpg"><img src="assets/ui_aprobada/02_almacenamiento.jpg" alt="Referencia visual Cyber Cockpit: Memoria" width="330"></a>
 
-**Al tocar Transferir:** se elige una carpeta de destino, se autoriza escritura y se selecciona un archivo origen. El motor copia **datos reales**, muestra bytes y porcentaje cuando el tamaño es conocido y comprueba **SHA-256** al finalizar. La pausa y las colas de varios archivos dibujadas en el concepto **todavía no están implementadas**; se opera un archivo a la vez.
+[🔍 Abrir imagen original a máxima resolución disponible](assets/ui_aprobada/02_almacenamiento.jpg)
 
-### 3. Memoria · Explorador
+### 4. Herramientas
 
-![Pantalla aprobada: capacidad y explorador de almacenamiento](assets/ui_aprobada/02_almacenamiento.jpg)
+<a href="assets/ui_aprobada/03_herramientas.jpg"><img src="assets/ui_aprobada/03_herramientas.jpg" alt="Referencia visual Cyber Cockpit: Herramientas" width="330"></a>
 
-**Al tocar Memoria:** muestra capacidad de la partición de datos del teléfono, y volumen externo si Android permite medirlo. Permite explorar carpetas autorizadas, editar textos creando una copia nueva, duplicar con hash, renombrar y eliminar **solo después de respaldo y confirmación**. Un volumen extraíble puede ser USB o microSD.
+[🔍 Abrir imagen original a máxima resolución disponible](assets/ui_aprobada/03_herramientas.jpg)
 
-### 4. Herramientas · Diagnóstico
+### 5. Ajustes
 
-![Pantalla aprobada: herramientas de diagnóstico USB](assets/ui_aprobada/03_herramientas.jpg)
+<a href="assets/ui_aprobada/04_ajustes.jpg"><img src="assets/ui_aprobada/04_ajustes.jpg" alt="Referencia visual Cyber Cockpit: Ajustes" width="330"></a>
 
-**Al tocar Herramientas:** consulta la batería, USB host, dispositivos visibles y permisos de la carpeta seleccionada; permite recalcular diagnósticos y obtener el SHA-256 de un archivo real. No afirma medir watts, hacer expulsión física por software ni ejecutar pruebas eléctricas sin instrumentación compatible.
+[🔍 Abrir imagen original a máxima resolución disponible](assets/ui_aprobada/04_ajustes.jpg)
+## 🧭 Funciones de cada pantalla
 
-### 5. Ajustes · Configuración
+| Pantalla | Qué ofrece |
+|:--|:--|
+| **Tablero** | Batería y estado de carga reales, estado USB/OTG accesible, conexión autorizada y resumen de transferencias. |
+| **Transferencias** | Seleccionar archivos y destinos autorizados, copiar y comprobar su integridad con SHA-256; progreso real cuando existe una operación. |
+| **Memoria** | Mostrar capacidad ocupada y libre disponible a través de Android, explorar carpetas autorizadas y operaciones documentales. |
+| **Herramientas** | Diagnóstico USB/Host, identificación de dispositivos cuando se expone y comprobación SHA-256. |
+| **Ajustes** | Preferencias de visualización, información y controles de seguridad. |
 
-![Pantalla aprobada: configuración cyber futurista](assets/ui_aprobada/04_ajustes.jpg)
+## 🔌 Conectar teléfono, power bank y memoria USB
 
-**Al tocar Ajustes:** cambia los efectos de flujo, el espaciado y la visualización de identificadores técnicos. Estos ajustes se guardan en las preferencias privadas de la aplicación. La verificación de copias no puede desactivarse accidentalmente.
+**Necesitás:** teléfono Android con capacidades OTG compatibles, **hub USB-C con puertos de datos y entrada PD IN**, un pendrive USB-A/USB-C (o adaptador de datos apropiado) y una fuente de energía compatible.
 
-📘 **[Mapa funcional, límites físicos y pruebas pendientes](docs/FRONTEND_CYBER_COCKPIT_V06.md)**
-<!-- OTG:CYBER_COCKPIT_V06:END -->
+1. Enchufá el **hub USB-C/OTG** al teléfono.
+2. Conectá la **memoria USB** a un puerto **USB DATA** del hub.
+3. Conectá el **power bank** a **PD IN** del hub, **si es compatible**.
+4. Abrí **OTG POWER BRIDGE**, verificá batería, carga y dispositivos visibles.
+5. En **Conectar**, autorizá una carpeta mediante el selector de Android (**SAF**).
+6. Seleccioná el archivo y la carpeta de destino; ejecutá la copia y comprobá el resultado **SHA-256**.
+7. Al terminar, verificá el fin de la escritura antes de retirar la memoria. **Desconectar** cierra la sesión de la app, no expulsa físicamente el dispositivo.
 
-<!-- OTG:APK:START -->
-## 📲 Descargar e instalar OTG POWER BRIDGE en Android
+> ⚠️ **Compatibilidad:** USB Host no garantiza carga + OTG simultáneos. Android puede mostrar memorias en SAF sin enumerarlas en USB. El porcentaje del **power bank** y la potencia eléctrica se muestran como **no disponibles** si el hardware no ofrece telemetría. Usar un hub con varios puertos no garantiza que Android reconozca todas las unidades.
 
-**Aplicación creada por GENAI INDUSTRIES** · Compatible a nivel de diseño con teléfonos Android de múltiples marcas (Samsung, HONOR, Redmi/Xiaomi, Motorola y otras), sujeto a las capacidades reales del hardware.
+## 📲 Instalación en Android
 
-### 📦 APK v0.6.3 publicado · validación de uso incompleta
+**[➡️ DESCARGAR OTG-POWER-BRIDGE.apk — VERSIÓN ESTABLE](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/latest/download/OTG-POWER-BRIDGE.apk)**
 
-**El archivo APK existe en GitHub Releases v0.6.3.** Su hash y firma v2 se comprobaron estáticamente; esto no acredita pruebas de funcionamiento, compatibilidad física ni capturas de la interfaz.
+1. Abrí el enlace oficial anterior desde el teléfono.
+2. Descargá **`OTG-POWER-BRIDGE.apk`**; es el instalador, **no** el archivo «Source code ZIP».
+3. Abrilo con el gestor de archivos y autorizá la instalación desde esa aplicación únicamente si Android lo solicita.
+4. No desactives Play Protect. Si una versión de prueba antigua tiene firma diferente, respaldá sus datos antes de desinstalarla.
+5. Conectá los accesorios compatibles y concedé los permisos de acceso a archivos que necesites.
 
-**[📦 Consultar descargas y versiones disponibles](https://github.com/luis171987/OTG-POWER-BRIDGE/releases)**
+**Datos del APK oficial V0.6.3:** paquete `bo.genai.usbpowerbridge` · `versionCode 10` · Android mínimo definido por el proyecto: **8.0 (API 26)**.
 
-[Descargar el archivo publicado OTG-POWER-BRIDGE.apk de v0.6.3](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/download/v0.6.3/OTG-POWER-BRIDGE.apk). Consulta la ficha de entrega antes de instalar; esta revisión no ha instalado ni ejecutado el APK.
+**SHA-256 del APK publicado** (verificado en el lanzamiento):
 
-### Instalación en el teléfono
-
-1. Abre el enlace de descarga en tu navegador Android.
-2. Cuando haya un APK publicado, toca **Descargar** y ábrelo desde **Descargas**.
-3. Si Android lo solicita, autoriza temporalmente **Instalar aplicaciones desconocidas** solo para el navegador o gestor de archivos que hayas elegido. No desactives Play Protect.
-4. Comprueba el nombre del archivo, su origen GitHub y la firma del instalador cuando estén disponibles; instala únicamente versiones verificadas.
-5. Abre **OTG POWER BRIDGE**, conecta un **hub USB compatible con datos y carga pasante**, y concede acceso a las carpetas que desees gestionar mediante el selector de Android.
-
-> ⚠️ **Importante:** la app no convierte un power bank en un hub USB. Que el teléfono pueda cargar y usar memoria OTG al mismo tiempo depende de sus características eléctricas, del hub y de la negociación USB. Android 8+ es el mínimo de proyecto, no una garantía de compatibilidad universal.
-
-**[📖 Ver tutorial ilustrado de conexión y transferencia](#-tutorial-de-conexión-física)** · **[🧩 Consultar código fuente](https://github.com/luis171987/OTG-POWER-BRIDGE)**
-
-> 📥 **Archivo publicado v0.6.3:** [APK de esta entrega](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/download/v0.6.3/OTG-POWER-BRIDGE.apk). Consulta su verificación estática y limitaciones en la [ficha de versión](docs/versiones/2026-11-05_v0.6.3/README.md).
-
-<!-- OTG:APK:END -->
-
-<!-- OTG:REAL:START -->
-## 🔌 Panel Android real · Conectar / Desconectar · v0.5.0
-
-**Sin modo sandbox ni simulador.** Este código consulta Android y trabaja únicamente con carpetas y archivos reales que autorice cada usuario.
-
-**Conectar** abre el selector de carpetas de Android y activa una sesión de acceso real cuando la carpeta está disponible. **Desconectar** termina el acceso de la aplicación; no desconecta físicamente el hardware. Los indicadores de **batería, carga, USB / OTG, carpeta y volumen extraíble** muestran observaciones del dispositivo, no valores inventados.
-
-Las imágenes anteriores V0.4/V0.5 se retiraron del README y fueron sustituidas por las cinco pantallas de Cyber Cockpit V0.6.0; los renders de V0.6 son **propuestas de diseño**, no capturas de una ejecución real. La app no confirma "hub conectado" únicamente porque se abra una carpeta interna: indica por separado los dispositivos observables, el origen del almacenamiento y la alimentación.
-
-**Transferencia efectiva:** seleccionar una carpeta USB/SD a través de Android → autorizar escritura → seleccionar un archivo origen → copiar con verificación SHA-256 sin borrar el original. Ver [protocolo de prueba real](docs/MODO_REAL_ANDROID.md).
-
-⚠️ La app **no activa físicamente USB-PD, OTG ni compatibilidad inexistente**. La carga simultánea y los datos dependen del hardware, el hub y el teléfono. En Android 11+ algunas carpetas raíz no se pueden seleccionar; utiliza una subcarpeta autorizable.
-<!-- OTG:REAL:END -->
-
-## 📊 Panel de telemetría real V0.5.0
-
-El panel distingue **batería del teléfono** (porcentaje real comunicado por Android), **power bank** (porcentaje no disponible cuando no existe protocolo de telemetría), **dispositivos USB** (fabricante/producto/VID/PID si Android los expone), **volumen de almacenamiento** (etiqueta, capacidad total, libre y usado cuando sea medible) y **progreso de transferencia** (nombre del archivo, bytes, porcentaje cuando el tamaño existe, SHA-256 final).
-
-**No inventa capacidades:** una memoria USB-C o USB-A puede aparecer como volumen SAF sin identificarse por fabricante; un microSD también puede figurar como extraíble. Si el almacenamiento o el power bank no reportan alguna métrica se indicará **No disponible** en lugar de presentar un valor simulado. El tipo de conector físico no puede inferirse por una API universal.
-
-El botón **Conectar** permite seleccionar una carpeta mediante Android. El botón **Desconectar** termina la sesión de acceso de la app, no desconecta físicamente el hub. Para transferir, autoriza escritura y utiliza una copia de prueba. Los archivos originales se conservan durante la copia; el éxito se informa solo tras comparar SHA-256.
-
-**Base de telemetría:** incorporada desde `0.5.0`; la entrega publicada actual es `0.6.3`, con su evidencia y límites en la ficha enlazada arriba. Consultar [documentación técnica de telemetría](docs/TELEMETRIA_REAL_V0_5_0.md).
-
-## 📢 Comparte el repositorio en WhatsApp y Facebook
-
-![Imagen de vista previa social de OTG POWER BRIDGE, basada en el logo oficial de GENAI INDUSTRIES](assets/SOCIAL_PREVIEW_OTG_POWER_BRIDGE_1280x640.jpg)
-
-**Repositorio público previsto:** [github.com/luis171987/OTG-POWER-BRIDGE](https://github.com/luis171987/OTG-POWER-BRIDGE) (el enlace funcionará después del primer `push`).
-
-Para que este **logo aparezca como miniatura cuando se comparta el enlace**, el propietario debe cargar la imagen anterior en **GitHub → Settings → Social preview → Edit → Upload an image**. Este paso se realiza **una sola vez** tras crear el repositorio y **no puede sustituirse por poner una imagen en el README**. Consulta las [instrucciones de vista previa para WhatsApp y Facebook](docs/COMPARTIR_WHATSAPP_FACEBOOK.md). Las redes pueden conservar miniaturas en caché.
-
-## ¿Para qué sirve?
-
-**OTG POWER BRIDGE** ayuda a consultar la carga del teléfono, detectar dispositivos USB visibles y administrar archivos de carpetas autorizadas por el usuario. Su objetivo es facilitar transferencias cuando necesitas usar una memoria USB **mientras alimentas tu teléfono desde un power bank**, siempre que un **hub OTG con alimentación pasante** y tu Android permitan ambas funciones simultáneamente.
-
-La app **no puede crear una ruta USB de datos por software** ni hacer compatible un dispositivo que físicamente no admite carga + OTG. La alimentación es un circuito físico; los archivos viajan por el hub y el bus USB, no por la app ni a través del power bank.
-
-## 🎬 Caso de uso: trabajando con el teléfono y la batería casi agotada
-
-> Imagina que estás trabajando desde el celular. Tienes fotografías, un contrato PDF y documentos que debes entregar en una memoria USB. El teléfono marca **8 % de batería** y no puedes esperar a que se recargue para terminar la transferencia. Necesitas conectar un power bank **sin desconectar el pendrive**.
-
-**Solución propuesta:** un hub USB-C compatible con **entrada de carga PD** y **puerto USB de datos** permite conectar una batería externa y una memoria al teléfono por un solo conector USB-C. En modelos Android que admitan el funcionamiento simultáneo, OTG POWER BRIDGE ayuda a seleccionar la carpeta de destino y copiar archivos verificando su integridad.
-
-### Imagen 1 — Ejemplo completo de la solución
-
-![Escena 3D ilustrativa: teléfono Android con logo de OTG POWER BRIDGE, power bank blanco, hub USB-C gris y memoria conectados](assets/01_conexion_general_3d.png)
-
-*Se distinguen **dos rutas independientes**: el **cable de alimentación** conecta el power bank a la entrada **PD IN** del hub; el **pendrive** se conecta a un **puerto USB DATA** del hub; el hub se conecta al teléfono. Imagen conceptual, no prueba de compatibilidad ni fotografía de equipos en funcionamiento.*
-
-## 🔌 Tutorial de conexión física
-
-### Imagen 2 — Identifica cada dispositivo y conéctalo
-
-![Tutorial 3D: 1 power bank, 2 hub USB-C OTG con PD, 3 memoria USB, 4 teléfono Android](assets/02_tutorial_conexion_3d.png)
-
-**Paso 1 — Prepara el teléfono.** Comprueba que dispone de puerto USB compatible con OTG. Abre la app sin conectar todavía la memoria y comprueba el estado de la batería. No todas las marcas admiten carga y datos OTG simultáneos.
-
-**Paso 2 — Conecta el hub.** Inserta el conector principal del **hub USB-C OTG** en el teléfono. El hub debe anunciar **USB data / OTG** y, por separado, **PD IN / carga pasante**. Un divisor de carga o un adaptador exclusivamente eléctrico no sirve como sustituto de un hub de datos.
-
-**Paso 3 — Conecta el pendrive al puerto de datos.** Utiliza USB-A o USB-C según la memoria. Una memoria **micro-USB** necesita un adaptador USB de datos compatible. **No conectes la memoria a PD IN.** Si Android muestra la unidad en el selector de archivos, habrá una vía de datos accesible.
-
-**Paso 4 — Conecta el power bank a PD IN.** Utiliza la salida USB-C del power bank, un cable apropiado y la entrada de alimentación PD del hub. Deben ser eléctricamente compatibles. **No empalmes cables ni conectes el SUNSHINE SS-905D de reparación.** Confirma que Android indica alimentación externa y comprueba si el pendrive sigue accesible.
-
-**Prueba de compatibilidad necesaria:** primero verifica acceso USB sin alimentación; luego conecta energía, observa que el teléfono realmente cargue y vuelve a comprobar el almacenamiento. Si cualquiera de las funciones deja de funcionar, esa combinación **no está validada**.
-
-## 📱 Tutorial dentro de la aplicación
-
-### Imagen 3 — Detectar, autorizar y transferir
-
-![Pantallas conceptuales OTG POWER BRIDGE: diagnóstico de carga, USB, permisos del sistema y explorador de archivos](assets/ui_aprobada/01_transferencias.jpg)
-
-**1. Consultar energía:** abre OTG POWER BRIDGE y comprueba el estado de batería que informa Android. La app **no mide directamente voltios, amperios, potencia PD ni capacidad del power bank**. Los valores eléctricos ilustrados en los renders son solo ejemplos visuales.
-
-**2. Comprobar memoria:** pulsa **Actualizar diagnóstico USB**. La enumeración USB puede ser incompleta; la prueba definitiva de accesibilidad de archivos es que Android ofrezca la unidad en el selector de documentos.
-
-**3. Autorizar carpeta:** pulsa **Conectar** y elige una carpeta del pendrive desde el selector de Android. Si el dispositivo no aparece, no atribuyas el fallo a la app sin revisar el hub, la alimentación y el formato del almacenamiento.
-
-**4. Transferir un archivo del teléfono:** habilita los cambios de archivos; pulsa **Copiar archivo a carpeta · SHA-256**, selecciona el PDF, documento o fotografía mediante el selector de Android y espera la confirmación de la copia. El original permanece intacto y el contenido transferido se compara mediante **SHA-256**, según lo implementado en el código. **El código 0.4.0 debe compilarse y validarse con archivos de prueba en un teléfono real.**
-
-**5. Expulsión:** al terminar, comprueba que la operación terminó antes de retirar el pendrive. Utiliza la opción de expulsión del sistema Android si está disponible. Desconectar la memoria durante una escritura puede corromper archivos.
-
-## 🧭 Vista previa del frontend Android
-
-### Imagen 4 — Panel principal del producto
-
-![Diseño 3D conceptual de OTG POWER BRIDGE en teléfono Redmi: batería, USB, almacenamiento, explorador, diagnóstico, respaldo, sincronización y seguridad](assets/ui_aprobada/00_tablero_cyber_cockpit_aprobado.jpg)
-
-*Diseño visual del frontend; no es una captura de una aplicación instalada. La interfaz implementada en el prototipo es más sencilla. Los módulos ilustrados que todavía no existen no deben interpretarse como funciones terminadas.*
-
-| Panel | Función | Estado del prototipo |
-| --- | --- | --- |
-| **Energía** | Consultar porcentaje y estado de carga reportados por Android | Implementación inicial |
-| **Diagnóstico USB** | Consultar USB host, dispositivos enumerados y VID/PID cuando Android los expone | Implementación inicial |
-| **Explorar** | Navegar en carpetas autorizadas mediante Storage Access Framework (SAF) | Implementación inicial |
-| **Copiar a USB** | Seleccionar archivo del sistema y copiarlo a carpeta autorizada con verificación SHA-256 | Código incorporado en v0.3.0; pendiente de probar en dispositivo |
-| **Editar** | Abrir textos UTF-8 pequeños y guardar una copia nueva sin sobrescribir el original | Implementación inicial |
-| **Respaldo** | Duplicar archivos con SHA-256 en la carpeta autorizada | Implementación inicial |
-| **Seguridad** | Cambios desactivados por defecto y confirmación de operaciones destructivas | Implementación inicial |
-| **Sincronizar automáticamente** | Sincronización bidireccional o programada | **No implementado** |
-
-## 🌍 Compatibilidad universal por capacidades
-
-Compatible **a nivel de diseño** con múltiples fabricantes Android (HONOR, Samsung, Redmi/Xiaomi, Motorola, Pixel y otros), hubs USB-C con funciones adecuadas, power banks de diversas marcas y pendrives **USB-A, USB-C o micro-USB mediante adaptador USB de datos**.
-
-- **Android 8.0 o superior** es el mínimo definido por este proyecto (`minSdk 26`), **no** una certificación de funcionamiento en todos los teléfonos de esa versión.
-- No existe garantía universal de carga simultánea + OTG: depende del firmware, el hardware USB del teléfono, el hub, la negociación de alimentación y los adaptadores.
-- No se requiere root, ADB ni Termux para usar la app una vez compilada e instalada.
-- La copia entre teléfono y USB requiere acceso concedido al archivo de origen y a la carpeta de destino, además de permisos efectivos de escritura del proveedor de documentos.
-- Android puede exponer memorias USB desde el selector de archivos aunque no muestre el periférico en la lista de dispositivos USB accesible a la aplicación.
-
-## 🔐 Privacidad y seguridad
-
-Los archivos seleccionados se procesan en el dispositivo mediante permisos del sistema Android; no se necesita subir documentos a un servidor. Las operaciones que modifican archivos están desactivadas inicialmente. **La copia de respaldo dentro del mismo pendrive no sustituye un respaldo en otro almacenamiento.** No se recomienda utilizar documentos únicos e irremplazables antes de completar pruebas físicas y de software.
-
-## 📦 Instalación y APK
-
-**Hay un APK publicado en Releases v0.6.3.** Se verificaron estáticamente su tamaño, SHA-256, firma v2 y correspondencia de contenido con CI. La ejecución en Android, la compatibilidad física y las capturas reales no quedan acreditadas por esas comprobaciones. No use las imágenes conceptuales como prueba de funcionamiento.
-
-Para compilar desde un entorno Android con Java, Android SDK API 35 y Gradle:
-
-```bash
-bash scripts/build_termux.sh
+```text
+2fce8d4def837e4b0734c4a72f4d768b3de1451f5453fd2860a3a75a50a67aab
 ```
 
-El script registra diagnósticos y no instala automáticamente el APK. Consulta [`README_BUILD_ES.md`](README_BUILD_ES.md).
+## 🛡️ Privacidad y precisión
 
-## 🧪 Estado de pruebas
+- Los archivos se gestionan mediante permisos **SAF** del sistema; no es necesario enviarlos a un servidor para copiar entre carpetas autorizadas.
+- Los indicadores muestran información disponible en Android. Si un dato no está accesible, la interfaz debe decirlo expresamente.
+- La función de carga depende del hardware compatible; la aplicación **supervisa, no controla físicamente la alimentación**.
+- **No se requiere root** para las funciones normales de la aplicación.
 
-Se han ejecutado pruebas **lógicas/simuladas** en versiones anteriores; la versión `0.3.0-preview` incorpora cambios de marca y transferencia SAF. **No se ha compilado ni probado en hardware real en esta sesión.** Las imágenes son renders conceptuales. Las cifras y los estados ficticios mostrados en ellas son únicamente ilustrativos.
+## 📚 Documentación e historial técnico
 
-## Créditos
+- [Lanzamiento estable V0.6.3](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/tag/v0.6.3).
+- [Ver todas las versiones publicadas](https://github.com/luis171987/OTG-POWER-BRIDGE/releases).
+- [Tutorial de conexión física](docs/MODO_REAL_ANDROID.md).
+- [Historial y auditorías del proyecto](docs/versiones/README.md) (si está disponible).
 
-**OTG POWER BRIDGE** — Aplicación creada por **GENAI INDUSTRIES**.  
-**Dirección y autoría:** Luis Carlos Moreno Jiménez, Santa Cruz de la Sierra, Bolivia.  
-Logo 3D: **versión oficial aprobada por su autor**. La marca y sus recursos visuales no se deben sustituir por versiones de prueba.
+Los diseños y documentos antiguos siguen formando parte del **historial técnico del repositorio**; no se muestran como una versión actualmente instalable en esta portada.
 
-**Referencias técnicas:** [Android — Storage Access Framework](https://developer.android.com/training/data-storage/shared/documents-files), [Android — USB host](https://developer.android.com/develop/connectivity/usb/host), [GitHub — vínculos de descarga de releases](https://docs.github.com/en/repositories/releasing-projects-on-github/linking-to-releases).
+## 📢 Compartir en Facebook y WhatsApp
+
+**[🔗 Compartir el repositorio oficial](https://github.com/luis171987/OTG-POWER-BRIDGE)**
+
+Para cambiar la miniatura del enlace se debe actualizar **GitHub → Settings → Social preview** con la portada Cyber Cockpit aprobada. El README y su primera imagen **no modifican automáticamente** esa miniatura. Facebook y WhatsApp pueden conservar imágenes anteriores en caché.
+
+---
+
+**OTG POWER BRIDGE © GENAI INDUSTRIES** · Creado por **Luis Carlos Moreno Jiménez** · Santa Cruz de la Sierra, Bolivia 🇧🇴
