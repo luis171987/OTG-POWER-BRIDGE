@@ -106,7 +106,7 @@ Los cinco diseños siguientes son **referencias gráficas de la interfaz aprobad
 
 - Los archivos se gestionan mediante permisos **SAF** del sistema; no es necesario enviarlos a un servidor para copiar entre carpetas autorizadas.
 - Los indicadores muestran información disponible en Android. Si un dato no está accesible, la interfaz debe decirlo expresamente.
-- La función de carga depende del hardware compatible; la aplicación **supervisa, no controla físicamente la alimentación**.
+- La función de carga depende del hardware compatible; la app **no activa físicamente USB-PD** y **supervisa, no controla físicamente la alimentación**. La [verificación estática de v0.6.3](docs/versiones/2026-11-05_v0.6.3/README.md) no acredita por sí sola aceptación funcional ni física.
 - **No se requiere root** para las funciones normales de la aplicación.
 
 ## 📚 Documentación e historial técnico
