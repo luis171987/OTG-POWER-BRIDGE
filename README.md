@@ -9,28 +9,32 @@
 **Aplicación Android creada por GENAI INDUSTRIES**  
 **Creador y director:** Luis Carlos Moreno Jiménez — Santa Cruz de la Sierra, Bolivia.
 
-**Estado:** Cyber Cockpit V0.6.0 publicado como código fuente; APK V0.6.0 pendiente de compilación y validación.
+**Estado:** v0.6.3 publicada en Releases; archivo verificado estáticamente. La aceptación de interfaz/hardware y las capturas reales siguen pendientes de evidencia en esta revisión.
 
 </div>
 
 <!-- repo-monitor:start -->
-## Estado comprobado de la preview 0.5.0
+## v0.6.3 publicada · aceptación incompleta
 
-Fuente: [`beed51f0e0c329aa973259cd4ed5b19c0ebc818c`](https://github.com/luis171987/OTG-POWER-BRIDGE/commit/beed51f0e0c329aa973259cd4ed5b19c0ebc818c), **candidata de desarrollo**, sin tag ni Release publicados.
+[Release v0.6.3](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/tag/v0.6.3), publicada el **2026-11-05 UTC**. Tag y fuente exacta: [`6a8ac407169aa0d7cfa4ff1c1dc5df5544542718`](https://github.com/luis171987/OTG-POWER-BRIDGE/commit/6a8ac407169aa0d7cfa4ff1c1dc5df5544542718).
 
-- **Compilación aprobada:** [Android CI, ejecución 41991766174, intento 1](https://github.com/luis171987/OTG-POWER-BRIDGE/actions/runs/41991766174) completó `gradle --no-daemon --console=plain :app:assembleDebug`; comprobó que el APK no estaba vacío y su integridad ZIP.
-- **Comprobaciones estáticas aprobadas:** 10/10 de modo real y 12/12 de telemetría. Comprueban presencia de código; no acreditan el comportamiento de la app en ejecución.
-- **Artefacto disponible:** [APK debug candidato de Actions](https://github.com/luis171987/OTG-POWER-BRIDGE/actions/runs/41991766174/artifacts/13398068748), sujeto al acceso y caducidad de Actions. No es instalador estable ni Release firmada de distribución.
-- **Validación incompleta:** las ocho comprobaciones de `tests/TelemetryFormatsTest.kt` no se ejecutan en este workflow. No hay prueba de interfaz ni de hardware que acredite transferencia, permisos SAF o carga + OTG simultáneos.
-- **Galería real pendiente:** las imágenes existentes conservan su condición de ilustraciones y mockups; no son capturas de esta preview. No se abrió esta versión en un dispositivo durante esta revisión.
+| Plataforma | Archivo publicado | Requisitos definidos | Verificación |
+| --- | --- | --- | --- |
+| Android | [OTG-POWER-BRIDGE.apk · v0.6.3](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/download/v0.6.3/OTG-POWER-BRIDGE.apk) | Android 8.0+; capacidades del teléfono/hub sujetas a prueba | 7.304.400 bytes, hash y firma v2 comprobados estáticamente; aceptación de uso pendiente |
 
-Consulta el [índice de versiones y previews](docs/versiones/README.md), la [ficha de esta preview](docs/versiones/preview/2026-11-05_beed51f0e0c3/README.md) y su [manifiesto de archivos](docs/versiones/preview/2026-11-05_beed51f0e0c3/archivos.json). La compilación no satisface la [puerta de validación física](docs/MODO_REAL_ANDROID.md#compatibilidad-y-límites-físicos).
+- [CI del tag, ejecución 42128808304, intento 1](https://github.com/luis171987/OTG-POWER-BRIDGE/actions/runs/42128808304): **aprobado** para 37+10 condiciones estáticas, `:app:assembleDebug`, `:app:assembleRelease` e integridad ZIP. El CI entrega la variante release **sin firma**; ese artefacto no se ofrece como instalador.
+- El APK de Releases tiene firma v2 criptográficamente válida y los mismos 120 archivos ajenos a la firma que el APK release del [CI de cd8b3773](https://github.com/luis171987/OTG-POWER-BRIDGE/actions/runs/42123871904), cuyo árbol fuente coincide con el tag. Esto acredita la relación estática del archivo con la fuente; no certifica el funcionamiento en Android ni la continuidad de la clave del propietario.
+- **Puertas pendientes de evidencia:** las ocho comprobaciones Kotlin no se ejecutan en el workflow; no hay resultados de interfaz ni capturas reales del SHA publicado. El propietario declara pruebas físicas en la documentación de release; esta revisión no las ejecutó ni dispone de un registro reproducible por versión/dispositivo.
+- **Galería:** las cinco imágenes actuales son conceptos de diseño. No se presentan como capturas de v0.6.3; las tomas reales siguen pendientes.
+- El hash completo, huella del certificado, procedencia, límites y todos los enlaces de archivos están en la [ficha de entrega](docs/versiones/2026-11-05_v0.6.3/README.md) y el [manifiesto](docs/versiones/2026-11-05_v0.6.3/archivos.json). Se conserva el [índice histórico](docs/versiones/README.md), incluida la preview 0.5.0.
+
+La publicación en Releases no sustituye la [validación física y funcional documentada](docs/MODO_REAL_ANDROID.md#compatibilidad-y-límites-físicos).
 <!-- repo-monitor:end -->
 
 <!-- OTG:CYBER_COCKPIT_V06:START -->
 ## 🚀 Cyber Cockpit V0.6.0
 
-**Estado:** APK V0.6.0 todavía no compilado ni publicado; pendiente de GitHub Actions y pruebas físicas.
+**Referencia visual:** conceptos de diseño V0.6.0; la entrega publicada es v0.6.3. Consulta arriba el build comprobado y las puertas de aceptación pendientes.
  — Cinco pantallas aprobadas
 
 La nueva versión de **OTG POWER BRIDGE** reorganiza la interfaz Android en **cinco pantallas realmente navegables**, conservando el logotipo 3D oficial y un estilo oscuro metalizado, cian y naranja. El encabezado panorámico se adapta de la imagen oficial; las tarjetas y botones son elementos **Jetpack Compose funcionales**, no fotografías con áreas táctiles ficticias.
@@ -75,17 +79,13 @@ La nueva versión de **OTG POWER BRIDGE** reorganiza la interfaz Android en **ci
 
 **Aplicación creada por GENAI INDUSTRIES** · Compatible a nivel de diseño con teléfonos Android de múltiples marcas (Samsung, HONOR, Redmi/Xiaomi, Motorola y otras), sujeto a las capacidades reales del hardware.
 
-### ⏳ APK en preparación
+### 📦 APK v0.6.3 publicado · validación de uso incompleta
 
-**El instalador todavía no figura como activo de una versión estable en GitHub Releases.** No se ofrece un enlace de descarga que lleve a un archivo inexistente.
+**El archivo APK existe en GitHub Releases v0.6.3.** Su hash y firma v2 se comprobaron estáticamente; esto no acredita pruebas de funcionamiento, compatibilidad física ni capturas de la interfaz.
 
 **[📦 Consultar descargas y versiones disponibles](https://github.com/luis171987/OTG-POWER-BRIDGE/releases)**
 
-Enlace directo reservado para cuando se publique un APK verificado con el nombre exacto `OTG-POWER-BRIDGE.apk`:
-
-`https://github.com/luis171987/OTG-POWER-BRIDGE/releases/latest/download/OTG-POWER-BRIDGE.apk`
-
-Tras publicar el APK, vuelve a ejecutar el script `PUBLICAR_README_APK_TERMUX.sh` para activar el botón de descarga directa en este README.
+[Descargar el archivo publicado OTG-POWER-BRIDGE.apk de v0.6.3](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/download/v0.6.3/OTG-POWER-BRIDGE.apk). Consulta la ficha de entrega antes de instalar; esta revisión no ha instalado ni ejecutado el APK.
 
 ### Instalación en el teléfono
 
@@ -99,7 +99,7 @@ Tras publicar el APK, vuelve a ejecutar el script `PUBLICAR_README_APK_TERMUX.sh
 
 **[📖 Ver tutorial ilustrado de conexión y transferencia](#-tutorial-de-conexión-física)** · **[🧩 Consultar código fuente](https://github.com/luis171987/OTG-POWER-BRIDGE)**
 
-> 📥 **Última versión publicada:** [ver descargas oficiales](https://github.com/luis171987/OTG-POWER-BRIDGE/releases). Cuando exista una release con un instalador llamado `OTG-POWER-BRIDGE.apk`, el [enlace directo permanente](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/latest/download/OTG-POWER-BRIDGE.apk) apuntará a la última versión. **El APK V0.6.0 todavía no está publicado.**
+> 📥 **Archivo publicado v0.6.3:** [APK de esta entrega](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/download/v0.6.3/OTG-POWER-BRIDGE.apk). Consulta su verificación estática y limitaciones en la [ficha de versión](docs/versiones/2026-11-05_v0.6.3/README.md).
 
 <!-- OTG:APK:END -->
 
@@ -125,7 +125,7 @@ El panel distingue **batería del teléfono** (porcentaje real comunicado por An
 
 El botón **Conectar** permite seleccionar una carpeta mediante Android. El botón **Desconectar** termina la sesión de acceso de la app, no desconecta físicamente el hub. Para transferir, autoriza escritura y utiliza una copia de prueba. Los archivos originales se conservan durante la copia; el éxito se informa solo tras comparar SHA-256.
 
-**Versión:** código candidato `0.5.0` con compilación debug CI aprobada para el SHA indicado arriba y pruebas en teléfonos reales pendientes; no es todavía una versión pública final. Consultar [documentación técnica de telemetría](docs/TELEMETRIA_REAL_V0_5_0.md).
+**Base de telemetría:** incorporada desde `0.5.0`; la entrega publicada actual es `0.6.3`, con su evidencia y límites en la ficha enlazada arriba. Consultar [documentación técnica de telemetría](docs/TELEMETRIA_REAL_V0_5_0.md).
 
 ## 📢 Comparte el repositorio en WhatsApp y Facebook
 
@@ -220,7 +220,7 @@ Los archivos seleccionados se procesan en el dispositivo mediante permisos del s
 
 ## 📦 Instalación y APK
 
-**Por ahora no hay un APK público verificado para descargar.** El repositorio contiene código fuente de un **prototipo**, imágenes y documentación. Una vez que exista un APK compilado, firmado y probado, podrá publicarse como activo de una versión en **GitHub Releases** y aparecerá aquí el enlace HTTPS de descarga directa. No se anunciará como descargable antes de su publicación real.
+**Hay un APK publicado en Releases v0.6.3.** Se verificaron estáticamente su tamaño, SHA-256, firma v2 y correspondencia de contenido con CI. La ejecución en Android, la compatibilidad física y las capturas reales no quedan acreditadas por esas comprobaciones. No use las imágenes conceptuales como prueba de funcionamiento.
 
 Para compilar desde un entorno Android con Java, Android SDK API 35 y Gradle:
 
