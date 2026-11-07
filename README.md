@@ -13,11 +13,34 @@
 [![Versión estable](https://img.shields.io/badge/versi%C3%B3n_estable-v0.6.3-0aa7ec?style=for-the-badge)](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/tag/v0.6.3)
 [![Android](https://img.shields.io/badge/Android-8%2B-28a745?style=for-the-badge)](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/latest)
 
+</div>
+
+## 🎬 VIDEO OFICIAL — OTG POWER BRIDGE V0.6.3 (1 min 42 s)
+
+**¿Estás viajando, la batería se está agotando y necesitás copiar archivos de una memoria USB?** Mirá primero esta demostración con narración femenina en español latinoamericano. Muestra el **HVE / hub OTG**, el **power bank** conectado a la entrada de alimentación del hub y las **memorias USB** conectadas a sus puertos; después presenta las cinco pantallas Cyber Cockpit.
+
+<div align="center">
+
+[![▶️ REPRODUCIR VIDEO OFICIAL OTG POWER BRIDGE — presentación v0.6.3](assets/ui_aprobada/00_tablero_cyber_cockpit_aprobado.jpg)](assets/videos/OTG_POWER_BRIDGE_V063_COMERCIAL_ESMX_102S.mp4)
+
+<video src="https://github.com/luis171987/OTG-POWER-BRIDGE/raw/refs/heads/main/assets/videos/OTG_POWER_BRIDGE_V063_COMERCIAL_ESMX_102S.mp4" controls playsinline preload="metadata" poster="assets/ui_aprobada/00_tablero_cyber_cockpit_aprobado.jpg">
+  <a href="https://github.com/luis171987/OTG-POWER-BRIDGE/raw/refs/heads/main/assets/videos/OTG_POWER_BRIDGE_V063_COMERCIAL_ESMX_102S.mp4">▶️ Reproducir el video oficial (MP4, con sonido)</a>
+</video>
+
+### ▶️ [REPRODUCIR / DESCARGAR EL VIDEO OFICIAL CON SONIDO](https://github.com/luis171987/OTG-POWER-BRIDGE/raw/refs/heads/main/assets/videos/OTG_POWER_BRIDGE_V063_COMERCIAL_ESMX_102S.mp4)
+
+<sub>Video promocional de 102 segundos · 720 × 1280 · voz femenina es-MX · archivo MP4 almacenado en este repositorio.</sub>
+
+</div>
+
+> 🔊 **Para escuchar la narración, tocá Reproducir.** Por las restricciones de GitHub y de los navegadores, el README no puede imponer reproducción automática **con sonido**. El enlace de video funciona como alternativa cuando el reproductor integrado no está disponible.
+>
+> ⚠️ **Demostración promocional:** la carga simultánea con OTG solo funciona si tanto el teléfono como el HVE / hub USB-C con entrada PD son compatibles. La aplicación **no activa ni garantiza** esa capacidad física.
+
 ## 📥 [⬇️ DESCARGAR LA ÚLTIMA APK OFICIAL](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/latest/download/OTG-POWER-BRIDGE.apk)
 
 **[📦 Ver versión publicada y notas](https://github.com/luis171987/OTG-POWER-BRIDGE/releases/tag/v0.6.3)** · **[📖 Instalación y uso](#-instalación-en-android)**
 
-</div>
 
 > ✅ **VERSIÓN ACTUAL: V0.6.3**. Este README describe únicamente la versión estable publicada. Los prototipos anteriores se conservan en el historial de Git y la documentación técnica, **pero no son la descarga recomendada**.
 
